@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-function UserForm({ values, errors, touched, isSubmitting }) {
+function LoginForm({ values, errors, touched, isSubmitting }) {
   const [users, setUsers] = useState([])
 
   return (
@@ -53,4 +53,4 @@ export default withFormik({
     setSubmitting(false);
   }
 
-})(UserForm);
+})(LoginForm);
