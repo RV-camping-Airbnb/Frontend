@@ -1,14 +1,18 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import WelcomePage from './components/WelcomePage';
+import Navigation from './components/Navigation/Navigation';
+import HomePage from './components/Home/HomePage';
+import LoginForm from './components/Login/LoginForm';
+import SignUpForm from './components/Login/SignUpForm';
 
 function App() {
   return (
     <>
     <Navigation />
     <Switch>
-      <Route exact path='/' component={WelcomePage} />
+      <Route exact path='/' component={HomePage} />
+      <Route path='/login' component={LoginForm} />
+      <Route path='/signup' component={SignUpForm} />
     </Switch>
     </>
   );

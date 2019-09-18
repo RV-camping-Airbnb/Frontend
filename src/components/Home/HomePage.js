@@ -1,7 +1,7 @@
 import React from 'react'
-import Hero from '../images/Hero.jpg'
+import Hero from '../../images/Hero.jpg'
 
-function WelcomePage() {
+function HomePage() {
 
   return (
     <div className="homePage">
@@ -11,4 +11,4 @@ function WelcomePage() {
   )
 }
 
-export default WelcomePage
+export default HomePage;
