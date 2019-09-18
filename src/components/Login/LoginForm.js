@@ -18,14 +18,6 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 
       <button className="formButton" type="submit" disabled={isSubmitting}>Submit</button>
     </Form>
-    {users.map((user, index) => {
-        return (
-          <div className='loginContainer' key={index} index={index}>
-            <h1>Login Info</h1>
-            <h2>Name: {user.name}</h2>
-            <h4>Email: {user.email}</h4>
-          </div>
-      ) })}
      </>
   );
 }
