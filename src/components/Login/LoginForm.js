@@ -16,7 +16,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
       {touched.password && errors.password && <p className="error">{errors.password}</p>}
       <Field type="password" name="password" placeholder="Password" />
 
-      <button className="formButton" type="submit" disabled={isSubmitting}>Submit!</button>
+      <button className="formButton" type="submit" disabled={isSubmitting}>Submit</button>
     </Form>
     {users.map((user, index) => {
         return (

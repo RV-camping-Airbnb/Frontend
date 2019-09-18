@@ -36,7 +36,7 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
         <span>Accept Terms</span>
       </label>
 
-      <button className="formButton" type="submit" disabled={isSubmitting}>Submit!</button>
+      <button className="formButton" type="submit" disabled={isSubmitting}>Submit</button>
     </Form>
     {users.map((user, index) => {
         return (
