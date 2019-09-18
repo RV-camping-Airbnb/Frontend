@@ -25,16 +25,19 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
       <Field type="password" name="password" placeholder="Password" />
 
       <label>
+        {touched.landowner && errors.landowner && <p className="error">{errors.landowner}</p>}
         <Field className="checkbox" type="checkbox" name="landowner" checked={values.landowner} />
         <span>Land Owner</span>
       </label>
 
       <label>
+        {touched.rvowner && errors.rvowner && <p className="error">{errors.rvowner}</p>}
         <Field className="checkbox" type="checkbox" name="rvowner" checked={values.rvowner} />
         <span>RV Owner</span>
       </label>
 
       <label>
+        {touched.tos && errors.tos && <p className="error">{errors.tos}</p>}
         <Field className="checkbox" type="checkbox" name="tos" checked={values.tos} />
         <span>Accept Terms</span>
       </label>
