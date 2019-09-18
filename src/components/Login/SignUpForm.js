@@ -9,7 +9,7 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
 
   return (
     <>
-    <Form>
+    <Form className="signupForm">
       <h1>Sign-Up Form</h1>
 
       {touched.name && errors.name && <p className="error"> {errors.name}</p>}

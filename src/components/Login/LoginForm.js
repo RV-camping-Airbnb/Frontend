@@ -7,7 +7,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
 
   return (
     <>
-    <Form>
+    <Form className="loginForm">
       <h1>Login Form</h1>
 
       {touched.email && errors.email && <p className="error">{errors.email}</p>}
