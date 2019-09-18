@@ -12,8 +12,11 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
     <Form className="signupForm">
       <h1>Sign-Up Form</h1>
 
-      {touched.name && errors.name && <p className="error"> {errors.name}</p>}
-      <Field type="name" name="name" placeholder="Name" />
+      {touched.fname && errors.fname && <p className="error"> {errors.fname}</p>}
+      <Field type="fname" name="fname" placeholder="First Name" />
+
+      {touched.lname && errors.lname && <p className="error"> {errors.lname}</p>}
+      <Field type="lname" name="lname" placeholder="Last Name" />
 
       {touched.email && errors.email && <p className="error">{errors.email}</p>}
       <Field type="email" name="email" placeholder="Email" />
@@ -42,7 +45,7 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
         return (
           <div className='userContainer' key={index} index={index}>
             <h1>New User Info</h1>
-            <h2>Name: {user.name}</h2>
+            <h2>Name: {user.fname} {user.lname}</h2>
             <h4>Email: {user.email}</h4>
           </div>
       ) })}
@@ -51,10 +54,11 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
 }
 
 export default withFormik({
-  mapPropsToValues({ name, email, password, landowner, rvowner, tos }) {
+  mapPropsToValues({ fname, lname, email, password, landowner, rvowner, tos }) {
     
     return {
-      name: name || "",
+      fname: fname || "",
+      lname: lname || "",
       email: email || "",
       password: password || "",
       landowner: landowner || false,
@@ -64,7 +68,10 @@ export default withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    name: Yup.string().required()
+    fname: Yup.string().required()
+      .min(3,"Name not valid")
+      .required("Name is required"),
+    lname: Yup.string().required()
       .min(3,"Name not valid")
       .required("Name is required"),
     email: Yup.string()
