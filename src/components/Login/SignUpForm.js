@@ -6,8 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { TextField } from 'formik-material-ui';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -52,6 +50,14 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  dropdown: {
+    margin: theme.spacing(3, 0, 2),
+    width: '100%',
+    height: '55px',
+    borderRadius: '5px',
+    paddingLeft: '10px',
+    fontSize: '1rem'
+  }
 }));
 
 function SignUpForm({ values, touched, errors, isSubmitting }) {
@@ -119,18 +125,12 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               label="Password"
               id="password"
             />
-            {touched.rvowner && errors.rvowner && <p className="error">{errors.rvowner}</p>}
-            <FormControlLabel
-              control={<Checkbox value="rvowner" color="primary" />}
-              label="RV Owner" 
-              name="rvowner" 
-            />
-            {touched.landowner && errors.landowner && <p className="error">{errors.landowner}</p>}
-             <FormControlLabel
-              control={<Checkbox value="landowner" color="primary" />}
-              label="Land Owner"
-              name="landowner" 
-            />
+            {touched.member && errors.member && <p className="error">{errors.member}</p>}
+            <Field className={classes.dropdown} component="select" name="member">
+              <option value="" disabled>Select Account Type:</option>
+              <option value="rvowner">RV Owner</option>
+              <option value="landowner">Land Owner</option>
+            </Field>
             <Button 
               disabled={isSubmitting}
               type="submit"
@@ -165,15 +165,14 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
 }
 
 export default withFormik({
-  mapPropsToValues({ fname, lname, email, password, landowner, rvowner }) {
+  mapPropsToValues({ fname, lname, email, password, member }) {
     
     return {
       fname: fname || "",
       lname: lname || "",
       email: email || "",
       password: password || "",
-      landowner: landowner || false,
-      rvowner: rvowner || false,
+      member: member || ""
     };
   },
 
@@ -190,8 +189,8 @@ export default withFormik({
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),
-    landowner: Yup.boolean(),
-    rvowner: Yup.boolean()
+    member: Yup.string()
+      .required("Please select a member type.")
   }),
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
