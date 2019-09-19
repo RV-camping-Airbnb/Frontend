@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
-import { withFormik, Form, Field } from "formik";
+import { withFormik, Form } from "formik";
 import * as Yup from "yup";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,6 +13,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import RVFour from '../../images/rv4.jpg'
 
 function Copyright() {
   return (
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: `url(${RVFour})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -71,7 +72,7 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Form className={classes.form} noValidate>
+          <Form className={classes.form}>
           {touched.email && errors.email && <p className="error">{errors.email}</p>}
             <TextField
               type="email"

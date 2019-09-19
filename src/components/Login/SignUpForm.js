@@ -13,6 +13,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import RVOne from '../../images/rv1.jpg'
 
 function Copyright() {
   return (
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: `url(${RVOne})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -71,7 +72,7 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <Form className={classes.form} noValidate>
+          <Form className={classes.form}>
             {touched.fname && errors.fname && <p className="error"> {errors.fname}</p>}
             <TextField 
               type="fname" 
