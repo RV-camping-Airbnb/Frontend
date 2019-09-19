@@ -99,7 +99,6 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               required
               fullWidth
               id="lname"
-              autoFocus 
             />
             <Field
               type="email"
@@ -112,7 +111,6 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               required
               fullWidth
               autoComplete="email"
-              autoFocus
             />
             <Field
               name="password"
