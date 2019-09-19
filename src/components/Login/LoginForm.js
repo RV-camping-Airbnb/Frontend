@@ -1,11 +1,11 @@
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
-import { withFormik, Form } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from 'formik-material-ui';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function LoginForm({ values, errors, touched, isSubmitting }) {
+function LoginForm({ values, isSubmitting }) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
 
@@ -71,28 +71,28 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
             Sign in
           </Typography>
           <Form>
-          {touched.email && errors.email && <p className="error">{errors.email}</p>}
-            <TextField
+            <Field
               type="email"
+              name="email"
+              component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
               id="email"
               label="Email Address"
-              name="email"
               autoComplete="email"
               autoFocus
             />
-            {touched.password && errors.password && <p className="error">{errors.password}</p>}
-            <TextField
+            <Field
+              name="password"
+              type="password"
+              label="Password"
+              component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
               id="password"
               autoComplete="current-password"
             />

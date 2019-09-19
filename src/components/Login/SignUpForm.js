@@ -1,11 +1,11 @@
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
-import { withFormik, Form } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
+import { TextField } from 'formik-material-ui';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SignUpForm({ values, errors, touched, isSubmitting }) {
+function SignUpForm({ values, touched, errors, isSubmitting }) {
   const [users, setUsers] = useState([])
   console.log(users)
   const classes = useStyles();
@@ -71,11 +71,11 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
             Sign Up
           </Typography>
           <Form>
-            {touched.fname && errors.fname && <p className="error"> {errors.fname}</p>}
-            <TextField 
+            <Field 
               type="fname" 
               name="fname" 
               label="First Name"
+              component={TextField}
               variant="outlined"
               margin="normal"
               required
@@ -83,11 +83,11 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
               id="fname"
               autoFocus
             />
-            {touched.lname && errors.lname && <p className="error"> {errors.lname}</p>}
-            <TextField 
+            <Field 
               type="lname" 
               name="lname" 
               label="Last Name"
+              component={TextField}
               variant="outlined"
               margin="normal"
               required
@@ -95,28 +95,28 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
               id="lname"
               autoFocus 
             />
-            {touched.email && errors.email && <p className="error">{errors.email}</p>}
-            <TextField
+            <Field
               type="email"
+              name="email"
+              component={TextField}
+              id="email"
+              label="Email Address"
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
               autoComplete="email"
               autoFocus
             />
-            {touched.password && errors.password && <p className="error">{errors.password}</p>}
-            <TextField
+            <Field
+              name="password"
+              type="password"
+              component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              name="password"
               label="Password"
-              type="password"
               id="password"
             />
             {touched.rvowner && errors.rvowner && <p className="error">{errors.rvowner}</p>}
@@ -190,8 +190,8 @@ export default withFormik({
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),
-    landowner: Yup.boolean().oneOf([ true ], "Please check if you are a land owner"),
-    rvowner: Yup.boolean().oneOf([ true ], "Please check if you are an RV ownver"),
+    landowner: Yup.boolean(),
+    rvowner: Yup.boolean()
   }),
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {

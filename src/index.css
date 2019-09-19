@@ -56,3 +56,7 @@ code {
 .error {
   color: red;
 }
+
+a {
+  text-decoration: none;
+}
