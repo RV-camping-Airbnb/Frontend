@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import RVFour from '../../images/rv4.jpg'
@@ -48,10 +49,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
-  Form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -68,11 +65,12 @@ function LoginForm({ values, errors, touched, isSubmitting }) {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
+            <LockIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Form className={classes.form}>
+          <Form>
           {touched.email && errors.email && <p className="error">{errors.email}</p>}
             <TextField
               type="email"
