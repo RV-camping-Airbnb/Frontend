@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
-import { withFormik, Form, Field } from "formik";
+import { withFormik, Form } from "formik";
 import * as Yup from "yup";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" to="/">
         RVNB
       </Link>{' '}
       {new Date().getFullYear()}
@@ -119,21 +119,18 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
             />
+            {touched.rvowner && errors.rvowner && <p className="error">{errors.rvowner}</p>}
             <FormControlLabel
-              control={<Checkbox value="RV Owner" color="primary" />}
-              label="RV Owner"
-              type="checkbox" 
+              control={<Checkbox value="rvowner" color="primary" />}
+              label="RV Owner" 
               name="rvowner" 
-              checked={values.rvowner}
             />
+            {touched.landowner && errors.landowner && <p className="error">{errors.landowner}</p>}
              <FormControlLabel
-              control={<Checkbox value="Land Owner" color="primary" />}
+              control={<Checkbox value="landowner" color="primary" />}
               label="Land Owner"
-              type="checkbox" 
               name="landowner" 
-              checked={values.landowner}
             />
             <Button 
               disabled={isSubmitting}
@@ -152,8 +149,8 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link to='/signup' variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link to='/login' variant="body2">
+                  {"Already have an account? Login!"}
                 </Link>
               </Grid>
             </Grid>
@@ -183,11 +180,11 @@ export default withFormik({
 
   validationSchema: Yup.object().shape({
     fname: Yup.string().required()
-      .min(3,"Name not valid")
-      .required("Name is required"),
+      .min(3,"First name is not valid")
+      .required("First name is required"),
     lname: Yup.string().required()
-      .min(3,"Name not valid")
-      .required("Name is required"),
+      .min(3,"Last name is not valid")
+      .required("Last name is required"),
     email: Yup.string()
       .email("Email not valid")
       .required("Email is required"),
