@@ -139,7 +139,7 @@ function SignUpForm({ values, errors, touched, isSubmitting }) {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Submit
             </Button>
             <Grid container>
               <Grid item xs>
