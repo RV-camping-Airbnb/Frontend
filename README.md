@@ -66,3 +66,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Packages and Dependencies used for this Application
+
+https://www.npmjs.com/package/formik-material-ui
+https://www.npmjs.com/package/@material-ui/icons
+https://www.npmjs.com/package/@material-ui/core
+https://www.npmjs.com/package/formik
+https://www.npmjs.com/package/yup
+https://www.npmjs.com/package/react-router-dom
