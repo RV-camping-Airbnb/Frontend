@@ -124,7 +124,7 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
             />
             {touched.member && errors.member && <p className="error">{errors.member}</p>}
             <Field className={classes.dropdown} component="select" name="member">
-              <option value="" disabled>Select Account Type:</option>
+              <option value="" disabled>Select Account Type *</option>
               <option value="rvowner">RV Owner</option>
               <option value="landowner">Land Owner</option>
             </Field>
