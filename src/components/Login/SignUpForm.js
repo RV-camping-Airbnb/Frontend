@@ -87,7 +87,6 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               required
               fullWidth
               id="fname"
-              autoFocus
             />
             <Field 
               type="lname" 

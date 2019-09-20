@@ -82,7 +82,6 @@ function LoginForm({ values, isSubmitting }) {
               id="email"
               label="Email Address"
               autoComplete="email"
-              autoFocus
             />
             <Field
               name="password"
