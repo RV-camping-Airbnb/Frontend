@@ -13,6 +13,9 @@ function Navigation() {
       <NavLink to='/signup'>
         Sign-Up
       </NavLink>
+      <NavLink to='/favorites'>
+        Favorites
+      </NavLink>
     </div>
   )
 }
