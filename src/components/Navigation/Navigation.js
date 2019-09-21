@@ -118,7 +118,7 @@ function Navigation() {
         </div>
         <Divider />
         <List>
-          {[<NavLink to='/'>Home</NavLink>,'Profile', <NavLink to='/favorites'>Favorites</NavLink>, <NavLink to='/listings'>Listings</NavLink>, ].map((name, index) => (
+          {[<NavLink to='/'>Home</NavLink>,<NavLink to='/profile'>Profile</NavLink>, <NavLink to='/favorites'>Favorites</NavLink>, <NavLink to='/listings'>Listings</NavLink>, ].map((name, index) => (
             <ListItem button key={name}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={name} />
