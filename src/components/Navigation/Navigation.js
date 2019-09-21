@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
@@ -24,20 +23,6 @@ const drawerWidth = 240;
   const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
-    },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: drawerWidth,
     },
     title: {
       flexGrow: 1,
@@ -75,6 +60,16 @@ const drawerWidth = 240;
       }),
       marginRight: 0,
     },
+    toolBar: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      color: 'black',
+      height: '10vh'
+    },
+    menuButton: {
+      height: '40px',
+      width: '60px',
+    }
   }));
 
 function Navigation() {
@@ -93,24 +88,18 @@ function Navigation() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
+   
+        <Toolbar className={classes.toolBar}>
+          <IconButton 
             color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
-            <MenuIcon />
+            <MenuIcon className={classes.menuButton}/>
           </IconButton>
         </Toolbar>
-      </AppBar>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
@@ -135,7 +124,7 @@ function Navigation() {
         </div>
         <Divider />
         <List>
-          {[<NavLink to='/'>Home</NavLink>,'Profile', <NavLink to='/favorites'>Favorites</NavLink>, 'Listings', ].map((text, index) => (
+          {[<NavLink to='/'>Home</NavLink>,'Profile', <NavLink to='/favorites'>Favorites</NavLink>, <NavLink to='/listings'>Listings</NavLink>, ].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
@@ -144,7 +133,7 @@ function Navigation() {
         </List>
         <Divider />
         <List>
-          {['Send Message',<NavLink to='/signup'>Sign-up</NavLink>, <NavLink to='/login'>Login</NavLink>, 'Logout'].map((text, index) => (
+          {[<NavLink to='/sendmessage'>Send Message</NavLink>,<NavLink to='/signup'>Sign-up</NavLink>, <NavLink to='/login'>Login</NavLink>, <NavLink to='/logout'>Logout</NavLink>].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
