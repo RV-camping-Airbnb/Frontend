@@ -4,9 +4,7 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -120,10 +118,10 @@ function Navigation() {
         </div>
         <Divider />
         <List>
-          {[<NavLink to='/'>Home</NavLink>,'Profile', <NavLink to='/favorites'>Favorites</NavLink>, <NavLink to='/listings'>Listings</NavLink>, ].map((text, index) => (
-            <ListItem button key={text}>
+          {[<NavLink to='/'>Home</NavLink>,'Profile', <NavLink to='/favorites'>Favorites</NavLink>, <NavLink to='/listings'>Listings</NavLink>, ].map((name, index) => (
+            <ListItem button key={name}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={name} />
             </ListItem>
           ))}
         </List>

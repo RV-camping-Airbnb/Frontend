@@ -18,6 +18,10 @@ code {
     monospace;
 }
 
+h1 {
+  margin: 1rem auto;
+}
+
 .homePage {
   text-align: center;
   margin: 0 auto;
