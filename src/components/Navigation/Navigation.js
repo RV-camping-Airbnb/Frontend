@@ -23,6 +23,7 @@ const drawerWidth = 240;
   const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
+      justifyContent: 'flex-end',
     },
     title: {
       flexGrow: 1,
@@ -42,7 +43,7 @@ const drawerWidth = 240;
       alignItems: 'center',
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar,
-      justifyContent: 'flex-start',
+      justifyContent: 'flex-end',
     },
     content: {
       flexGrow: 1,
@@ -61,10 +62,7 @@ const drawerWidth = 240;
       marginRight: 0,
     },
     toolBar: {
-      display: 'flex',
-      justifyContent: 'flex-end',
       color: 'black',
-      height: '10vh'
     },
     menuButton: {
       height: '40px',
@@ -87,26 +85,24 @@ function Navigation() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-   
-        <Toolbar className={classes.toolBar}>
-          <IconButton 
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
-          >
-            <MenuIcon className={classes.menuButton}/>
-          </IconButton>
-        </Toolbar>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
-       
+        <div className={classes.drawerHeader}>
+          <Toolbar className={classes.toolBar}>
+            <IconButton 
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              className={clsx(open && classes.hide)}
+            >
+              <MenuIcon className={classes.menuButton}/>
+            </IconButton>
+          </Toolbar>
+        </div>
       </main>
       <Drawer
         className={classes.drawer}
