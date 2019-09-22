@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,14 +45,17 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     margin: '1% auto',
     width: '80%',
+    height: '425px',
     padding: '1%'
   },
   grid: {
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
+    margin: '0 auto',
     width: '80%',
-    padding: '1%'
+    padding: '0 1%',
+    cursor: 'pointer',
   },
   favContent: {
     display: 'flex',
@@ -141,6 +147,14 @@ function Profile(props) {
               {`${item.views} • ${item.createdAt}`}
             </Typography>
             <Rating name="half-rating" value={4.5} precision={0.5} />
+            <div>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+              <IconButton aria-label="share">
+                <ShareIcon />
+              </IconButton>
+            </div>
           </Box>
         ) : (
           <React.Fragment>
@@ -156,4 +170,4 @@ function Profile(props) {
   )
 }
 
-export default Profile
+export default Profile;
