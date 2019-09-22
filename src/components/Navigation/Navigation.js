@@ -132,7 +132,7 @@ function Navigation() {
         </div>
         <Divider />
         <List>
-          <ListItem>
+          <ListItem button>
             <NavLink to='/' className={classes.menuLink}>
               <HomeIcon />
               <ListItemText className={classes.menuText}>
@@ -140,7 +140,7 @@ function Navigation() {
               </ListItemText>
             </NavLink>
           </ListItem>
-          <ListItem>
+          <ListItem button>
             <NavLink to='/profile' className={classes.menuLink}>
               <PersonIcon />
               <ListItemText className={classes.menuText}>
@@ -148,7 +148,7 @@ function Navigation() {
               </ListItemText>
             </NavLink>
           </ListItem>
-          <ListItem>
+          <ListItem button>
             <NavLink to='/favorites' className={classes.menuLink}>
               <FavoriteIcon />
               <ListItemText className={classes.menuText}>
@@ -156,7 +156,7 @@ function Navigation() {
               </ListItemText>
             </NavLink>
           </ListItem>
-          <ListItem>
+          <ListItem button>
             <NavLink to='/listings' className={classes.menuLink}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
@@ -167,7 +167,7 @@ function Navigation() {
         </List>
         <Divider />
         <List>
-          <ListItem>
+          <ListItem button>
            <NavLink to='/sendmessage' className={classes.menuLink}>
              <SendIcon />
              <ListItemText className={classes.menuText}>
@@ -175,7 +175,7 @@ function Navigation() {
              </ListItemText>
            </NavLink>
          </ListItem>
-         <ListItem>
+         <ListItem button>
            <NavLink to='/signup' className={classes.menuLink}>
              <RvHookupIcon />
              <ListItemText className={classes.menuText}>
@@ -183,7 +183,7 @@ function Navigation() {
              </ListItemText>
            </NavLink>
          </ListItem>
-         <ListItem>
+         <ListItem button>
            <NavLink to='/login' className={classes.menuLink}>
              <LockOpenIcon />
              <ListItemText className={classes.menuText}>
