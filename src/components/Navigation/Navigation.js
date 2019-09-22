@@ -15,6 +15,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ViewListIcon from '@material-ui/icons/ViewList';
+import SendIcon from '@material-ui/icons/Send';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import RvHookupIcon from '@material-ui/icons/RvHookup';
 
 const drawerWidth = 240;
 
@@ -65,6 +73,12 @@ const drawerWidth = 240;
     menuButton: {
       height: '40px',
       width: '60px',
+    },
+    menuLink: {
+      display: 'flex',
+    },
+    menuText: {
+      marginLeft: '25px'
     }
   }));
 
@@ -118,21 +132,65 @@ function Navigation() {
         </div>
         <Divider />
         <List>
-          {[<NavLink to='/'>Home</NavLink>,<NavLink to='/profile'>Profile</NavLink>, <NavLink to='/favorites'>Favorites</NavLink>, <NavLink to='/listings'>Listings</NavLink>, ].map((name, index) => (
-            <ListItem button key={name}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={name} />
-            </ListItem>
-          ))}
+          <ListItem>
+            <NavLink to='/' className={classes.menuLink}>
+              <HomeIcon />
+              <ListItemText className={classes.menuText}>
+                Home
+              </ListItemText>
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to='/profile' className={classes.menuLink}>
+              <PersonIcon />
+              <ListItemText className={classes.menuText}>
+                Profile
+              </ListItemText>
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to='/favorites' className={classes.menuLink}>
+              <FavoriteIcon />
+              <ListItemText className={classes.menuText}>
+                Favorites
+              </ListItemText>
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to='/listings' className={classes.menuLink}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Listings
+              </ListItemText>
+            </NavLink>
+          </ListItem >
         </List>
         <Divider />
         <List>
-          {[<NavLink to='/sendmessage'>Send Message</NavLink>,<NavLink to='/signup'>Sign-up</NavLink>, <NavLink to='/login'>Login</NavLink>, <NavLink to='/logout'>Logout</NavLink>].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem>
+           <NavLink to='/sendmessage' className={classes.menuLink}>
+             <SendIcon />
+             <ListItemText className={classes.menuText}>
+               Send Message
+             </ListItemText>
+           </NavLink>
+         </ListItem>
+         <ListItem>
+           <NavLink to='/signup' className={classes.menuLink}>
+             <RvHookupIcon />
+             <ListItemText className={classes.menuText}>
+               Sign-Up
+             </ListItemText>
+           </NavLink>
+         </ListItem>
+         <ListItem>
+           <NavLink to='/login' className={classes.menuLink}>
+             <LockOpenIcon />
+             <ListItemText className={classes.menuText}>
+               Login
+             </ListItemText>
+           </NavLink>
+         </ListItem>
         </List>
       </Drawer>
     </div>
