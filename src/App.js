@@ -10,6 +10,7 @@ import Favorites from './components/Profile/Favorites';
 import Profile from './components/Profile/Profile';
 import Listings from './components/Listings/Listings';
 import SendMessage from './components/Profile/SendMessage';
+import SpeedDialer from './components/Navigation/SpeedDialer'
 
 function App() {
   const [favoriteList, setFavoriteList] = useState(['Property One', 'Property Two']);
@@ -35,6 +36,7 @@ function App() {
       <Route path='/signup' component={SignUpForm} />
       <Route path='/favorites' render={props => <Favorites {...props} addToFavoriteList={addToFavoriteList} favoriteList={favoriteList} />} />
     </Switch>
+    <SpeedDialer />
     </>
   );
 }

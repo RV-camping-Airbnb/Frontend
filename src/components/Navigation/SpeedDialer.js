@@ -41,9 +41,6 @@ const useStyles = makeStyles(theme => ({
       left: theme.spacing(3),
     },
   },
-  directionUp: {},
-  directionRight: {},
-  directionDown: {},
   directionLeft: {},
 }));
 
@@ -57,9 +54,8 @@ const actions = [
 
 export default function SpeedDialer() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState('up');
+  const [direction, setDirection] = React.useState('left');
   const [open, setOpen] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false);
 
   const handleClick = () => {
     setOpen(prevOpen => !prevOpen);
@@ -67,11 +63,6 @@ export default function SpeedDialer() {
 
   const handleDirectionChange = event => {
     setDirection(event.target.value);
-  };
-
-  const handleHiddenChange = (event, newHidden) => {
-    setHidden(newHidden);
-    setOpen(newHidden ? false : open);
   };
 
   const handleClose = () => {
@@ -86,33 +77,10 @@ export default function SpeedDialer() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.controls}>
-        <FormControlLabel
-          control={
-            <Switch checked={hidden} onChange={handleHiddenChange} value="hidden" color="primary" />
-          }
-          label="Hidden"
-        />
-        <FormLabel component="legend">Direction</FormLabel>
-        <RadioGroup
-          aria-label="direction"
-          name="direction"
-          className={classes.radioGroup}
-          value={direction}
-          onChange={handleDirectionChange}
-          row
-        >
-          <FormControlLabel value="up" control={<Radio />} label="Up" />
-          <FormControlLabel value="right" control={<Radio />} label="Right" />
-          <FormControlLabel value="down" control={<Radio />} label="Down" />
-          <FormControlLabel value="left" control={<Radio />} label="Left" />
-        </RadioGroup>
-      </div>
       <div className={classes.exampleWrapper}>
         <SpeedDial
           ariaLabel="SpeedDial example"
           className={speedDialClassName}
-          hidden={hidden}
           icon={<SpeedDialIcon />}
           onBlur={handleClose}
           onClick={handleClick}
