@@ -64,12 +64,18 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     margin: '1% auto',
     width: '100%',
-    padding: '1%'
+    padding: '1%',
+    boxShadow: '1px 3px 5px'
   },
   heading: {
     fontSize:'1.6rem',
     margin: '0 auto'
   },
+  image: {
+    '&:hover': {
+      transform: 'scale(1.05)',
+    }
+  }
 }));
 
 const data = [
@@ -128,7 +134,7 @@ function Profile(props) {
     <h1 className={classes.heading}>Favorite Properties</h1>
     <Grid container wrap="nowrap" className={classes.grid}>
     {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
-      <Box key={index} width={260} margin={1} my={5}>
+      <Box key={index} width={260} margin={1} my={5} className={classes.image}>
         {item ? (
           <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
         ) : (
