@@ -1,11 +1,6 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Switch from '@material-ui/core/Switch';
 import { capitalize } from '@material-ui/core/utils';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -54,15 +49,11 @@ const actions = [
 
 export default function SpeedDialer() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState('left');
-  const [open, setOpen] = React.useState(false);
+  const [direction] = useState('left');
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(prevOpen => !prevOpen);
-  };
-
-  const handleDirectionChange = event => {
-    setDirection(event.target.value);
   };
 
   const handleClose = () => {

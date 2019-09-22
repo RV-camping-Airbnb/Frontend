@@ -71,7 +71,7 @@ function ResetPassword() {
         variant="outlined"
         required
       />
-      <Button variant="containd" color="secondary" className={classes.button}>
+      <Button variant="contain" color="secondary" className={classes.button}>
         Reset Password
       </Button>
     </Paper>
