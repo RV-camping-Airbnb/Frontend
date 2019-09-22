@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
     width: '80%',
     height: '500px',
+    backgroundColor: 'lightblue',
     padding: theme.spacing(3, 2),
   },
   bio: {
@@ -43,7 +44,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '1% auto',
+    backgroundColor: 'lightblue',
+    margin: '1% auto 0',
     width: '80%',
     height: '425px',
     padding: '1%'
@@ -62,6 +64,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
     margin: '1% auto',
     width: '100%',
     padding: '1%',
