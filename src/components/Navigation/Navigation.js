@@ -72,7 +72,7 @@ const drawerWidth = 240;
     },
     menuButton: {
       height: '40px',
-      width: '60px',
+      width: '50px',
     },
     menuLink: {
       display: 'flex',
