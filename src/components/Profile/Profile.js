@@ -130,6 +130,8 @@ function Profile(props) {
         <Avatar alt="Nick Durbin" src="" className={classes.bigAvatar} />
         <h1>Nick Durbin</h1>
         <h3>Akron, Ohio</h3>
+        <h4>RV Owner</h4>
+        <h4>Land Owner</h4>
         <Rating name="half-rating" value={4.5} precision={0.5} />
       </Paper>
     </Paper>
