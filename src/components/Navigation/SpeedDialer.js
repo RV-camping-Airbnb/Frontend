@@ -15,18 +15,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
-  controls: {
-    margin: theme.spacing(3),
-  },
-  exampleWrapper: {
-    position: 'relative',
-    height: 380,
-  },
   radioGroup: {
     margin: theme.spacing(1, 0),
   },
   speedDial: {
-    position: 'absolute',
+    position: 'fixed',
     '&$directionUp, &$directionLeft': {
       bottom: theme.spacing(2),
       right: theme.spacing(3),
@@ -68,30 +61,28 @@ export default function SpeedDialer() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.exampleWrapper}>
-        <SpeedDial
-          ariaLabel="SpeedDial example"
-          className={speedDialClassName}
-          icon={<SpeedDialIcon />}
-          onBlur={handleClose}
-          onClick={handleClick}
-          onClose={handleClose}
-          onFocus={handleOpen}
-          onMouseEnter={handleOpen}
-          onMouseLeave={handleClose}
-          open={open}
-          direction={direction}
-        >
-          {actions.map(action => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={handleClick}
-            />
-          ))}
-        </SpeedDial>
-      </div>
+      <SpeedDial
+        ariaLabel="RVNB Actions"
+        className={speedDialClassName}
+        icon={<SpeedDialIcon />}
+        onBlur={handleClose}
+        onClick={handleClick}
+        onClose={handleClose}
+        onFocus={handleOpen}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleClose}
+        open={open}
+        direction={direction}
+      >
+        {actions.map(action => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={handleClick}
+          />
+        ))}
+      </SpeedDial>
     </div>
   );
 }
