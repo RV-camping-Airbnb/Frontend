@@ -1,7 +1,8 @@
-import React, {useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -60,10 +61,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SignUpForm({ values, touched, errors, isSubmitting }) {
+function SignUpForm(props) {
   const [users, setUsers] = useState([])
   console.log(users)
   const classes = useStyles();
+
+  const forwardUser = () => {(props.history.push('/'))};
+
+  useEffect(() => {
+    if (props.status) {
+      setUsers([ ...users, props.status ])
+      forwardUser();
+    }
+  }, [props.status])
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -122,14 +132,14 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               label="Password"
               id="password"
             />
-            {touched.member && errors.member && <p className="error">{errors.member}</p>}
+            {props.touched.member && props.errors.member && <p className="error">{props.errors.member}</p>}
             <Field className={classes.dropdown} component="select" name="member">
               <option value="" disabled>Select Account Type *</option>
-              <option value="rvowner">RV Owner</option>
-              <option value="landowner">Land Owner</option>
+              <option value="rv-owner">RV Owner</option>
+              <option value="land-owner">Land Owner</option>
             </Field>
             <Button 
-              disabled={isSubmitting}
+              disabled={props.isSubmitting}
               type="submit"
               fullWidth
               variant="contained"
@@ -190,9 +200,20 @@ export default withFormik({
       .required("Please select a member type.")
   }),
 
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    resetForm();
-    setSubmitting(false);
+  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+    axios
+    .post('https://rvnb-app.herokuapp.com/signup', values)
+    .then(res => {
+      setStatus(res.data)
+      console.log(res.data, 'User has been added to the database!');
+      resetForm();
+      setSubmitting(false);
+    })
+    .catch(err => {
+      console.log(err.res, 'Failed to add new user to the database!');
+      setSubmitting(false);
+    });  
   }
+
 
 })(SignUpForm);
