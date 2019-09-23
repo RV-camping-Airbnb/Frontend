@@ -13,14 +13,6 @@ import SendMessage from './components/Profile/SendMessage';
 import SpeedDialer from './components/Navigation/SpeedDialer'
 
 function App() {
-  const [favoriteList, setFavoriteList] = useState(['Property One', 'Property Two']);
-
-  const addToFavoriteList = listing => {
-    const present = favoriteList.find(el => el.title === listing.title)
-    if (!present) {
-      setFavoriteList( [...favoriteList, listing] );
-    } 
-  };
 
   return (
     <>
@@ -34,7 +26,7 @@ function App() {
       <Route path='/profile' component={Profile} />
       <Route path='/sendmessage' component={SendMessage} />
       <Route path='/signup' component={SignUpForm} />
-      <Route path='/favorites' render={props => <Favorites {...props} addToFavoriteList={addToFavoriteList} favoriteList={favoriteList} />} />
+      <Route path='/favorites' render={props => <Favorites {...props} />} />
     </Switch>
     <SpeedDialer />
     </>
