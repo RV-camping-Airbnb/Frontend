@@ -85,6 +85,7 @@ const useStyles = makeStyles(theme => ({
 
 const data = [
   {
+    id: 1,
     src: 'https://source.unsplash.com/random',
     title: 'Property One',
     location: 'San Jose, CA',
@@ -93,6 +94,7 @@ const data = [
     isFavorited: false
   },
   {
+    id: 2,
     src: 'https://source.unsplash.com/random',
     title: 'Property Two',
     location: 'Paris, France',
@@ -101,6 +103,7 @@ const data = [
     isFavorited: false
   },
   {
+    id: 3,
     src: 'https://source.unsplash.com/random',
     title: 'Property Three',
     location: 'Tampa, FL',
@@ -109,6 +112,7 @@ const data = [
     isFavorited: false
   },
   {
+    id: 4,
     src: 'https://source.unsplash.com/random',
     title: 'Property Four',
     location: 'Lake Tahoe, CA',
@@ -117,6 +121,7 @@ const data = [
     isFavorited: false
   },
   {
+    id: 5,
     src: 'https://source.unsplash.com/random',
     title: 'Property Five',
     location: 'Dallas, TX',
@@ -131,20 +136,18 @@ const Favorites = (props) => {
   const classes = useStyles();
   const [favoriteList, setFavoriteList] = useState(data);
   const [className, setClassName] = useState();
-  console.log(data)
 
   const addToFavoritesList = listing => {
-    const present = favoriteList.find(el => el.title === listing.title)
-    if (!present) {
-      setFavoriteList( [...favoriteList, listing] );
-    } 
-  };
+    const present = favoriteList.find(el => el.id === listing.id)
 
-  const saveListing = (item) => {
-    // if (item.isFavorited === !true)
-    // addToFavoritesList(listing);
-    console.log(item)
-  }
+    if (!present.isFavorited) {
+      listing.isFavorited = true;
+      setFavoriteList( [...favoriteList, listing] );
+    } else {
+      listing.isFavorited = false;
+      setFavoriteList( [...favoriteList, listing] );
+    }
+  };
 
   return (
     <div className="saved-list">
@@ -175,7 +178,7 @@ const Favorites = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton aria-label="add to favorites" className={item.isFavorited && classes.colorSecondary} onClick={() => saveListing()}>
+                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => addToFavoritesList(item)}>
                         <FavoriteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
