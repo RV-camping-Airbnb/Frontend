@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +14,8 @@ import Grid from '@material-ui/core/Grid';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import RVFour from '../../images/rv4.jpg'
+import RVFour from '../../images/rv4.jpg';
+import { axiosWithoutAuth as axios } from '../../axiosutils'
 
 function Copyright() {
   return (
@@ -160,8 +160,8 @@ export default withFormik({
   }),
 
   handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
-    axios
-    .post('https://rvnb-app.herokuapp.com/login', values)
+    axios()
+    .post('/login', values)
     .then(res => {
       setStatus(res.data)
       console.log(res.data, 'User has been logged in!');

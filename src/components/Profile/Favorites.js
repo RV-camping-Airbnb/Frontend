@@ -78,6 +78,9 @@ const useStyles = makeStyles(theme => ({
       transform: 'scale(1.05)',
     }
   },
+  colorSecondary: {
+    color: theme.palette.secondary.main,
+  },
 }));
 
 const data = [
@@ -87,6 +90,7 @@ const data = [
     location: 'San Jose, CA',
     views: '396 k views',
     createdAt: 'a week ago',
+    isFavorited: false
   },
   {
     src: 'https://source.unsplash.com/random',
@@ -94,6 +98,7 @@ const data = [
     location: 'Paris, France',
     views: '2.1 M views',
     createdAt: '4 months ago',
+    isFavorited: false
   },
   {
     src: 'https://source.unsplash.com/random',
@@ -101,6 +106,7 @@ const data = [
     location: 'Tampa, FL',
     views: '130 M views',
     createdAt: '10 months ago',
+    isFavorited: false
   },
   {
     src: 'https://source.unsplash.com/random',
@@ -108,6 +114,7 @@ const data = [
     location: 'Lake Tahoe, CA',
     views: '112 k views',
     createdAt: 'a week ago',
+    isFavorited: false
   },
   {
     src: 'https://source.unsplash.com/random',
@@ -115,6 +122,7 @@ const data = [
     location: 'Dallas, TX',
     views: '112 views',
     createdAt: '4 hours ago',
+    isFavorited: false
   },
 ];
 
@@ -122,6 +130,7 @@ const Favorites = (props) => {
   const [listing, setListing] = useState(data);
   const classes = useStyles();
   const [favoriteList, setFavoriteList] = useState(data);
+  const [className, setClassName] = useState();
   console.log(data)
 
   const addToFavoritesList = listing => {
@@ -131,9 +140,10 @@ const Favorites = (props) => {
     } 
   };
 
-  const saveListing = () => {
-    addToFavoritesList(listing);
-    listing.target.style.color = 'red';
+  const saveListing = (item) => {
+    // if (item.isFavorited === !true)
+    // addToFavoritesList(listing);
+    console.log(item)
   }
 
   return (
@@ -143,7 +153,8 @@ const Favorites = (props) => {
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Favorite Listings:</h1>
             <Grid container wrap="nowrap" className={classes.grid}>
-            {(props.loading ? Array.from(new Array(3)) : data).map((item, index) => (
+            {data.map((item, index) => (
+             
               <Box key={index} width={260} margin={1} my={5} className={classes.image}>
                 {item ? (
                   <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
@@ -164,7 +175,7 @@ const Favorites = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton aria-label="add to favorites" onClick={() => saveListing()}>
+                      <IconButton aria-label="add to favorites" className={item.isFavorited && classes.colorSecondary} onClick={() => saveListing()}>
                         <FavoriteIcon />
                       </IconButton>
                       <IconButton aria-label="share">

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,7 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import RVOne from '../../images/rv1.jpg'
+import RVOne from '../../images/rv1.jpg';
+import { axiosWithoutAuth as axios } from '../../axiosutils';
 
 function Copyright() {
   return (
@@ -88,7 +88,7 @@ function SignUpForm(props) {
           </Typography>
           <Form>
             <Field 
-              type="fname" 
+              type="text" 
               name="fname" 
               label="First Name"
               component={TextField}
@@ -99,7 +99,7 @@ function SignUpForm(props) {
               id="fname"
             />
             <Field 
-              type="lname" 
+              type="text" 
               name="lname" 
               label="Last Name"
               component={TextField}
@@ -201,8 +201,8 @@ export default withFormik({
   }),
 
   handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
-    axios
-    .post('https://rvnb-app.herokuapp.com/signup', values)
+    axios()
+    .post('/signup', values)
     .then(res => {
       setStatus(res.data)
       console.log(res.data, 'User has been added to the database!');
