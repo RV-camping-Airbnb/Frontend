@@ -8,7 +8,7 @@ import ResetPassword from './components/Login/ResetPassword';
 import SignUpForm from './components/Login/SignUpForm';
 import Favorites from './components/Profile/Favorites';
 import Profile from './components/Profile/Profile';
-import Listings from './components/Listings/Listings';
+// import Listings from './components/Listings/Listings';
 import SendMessage from './components/Profile/SendMessage';
 import SpeedDialer from './components/Navigation/SpeedDialer'
 
@@ -28,7 +28,7 @@ function App() {
     <Switch>
       <Route exact path='/' component={HomePage} />
       <Route path='/reset-password' component={ResetPassword} />
-      <Route path='/listings' component={Listings} />
+      {/* <Route path='/listings' component={Listings} /> */}
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       <Route path='/profile' component={Profile} />

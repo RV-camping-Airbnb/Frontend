@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
 
 function SignUpForm(props) {
   const [users, setUsers] = useState([])
-  console.log(users)
+  console.log(props)
   const classes = useStyles();
 
   const forwardUser = () => {(props.history.push('/'))};
