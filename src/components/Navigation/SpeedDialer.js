@@ -20,13 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
   speedDial: {
     position: 'fixed',
-    '&$directionUp, &$directionLeft': {
+    '&$directionLeft': {
       bottom: theme.spacing(2),
       right: theme.spacing(3),
-    },
-    '&$directionDown, &$directionRight': {
-      top: theme.spacing(2),
-      left: theme.spacing(3),
     },
   },
   directionLeft: {},

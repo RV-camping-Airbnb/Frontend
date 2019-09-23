@@ -29,7 +29,7 @@ function App() {
       <Route exact path='/' component={HomePage} />
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/listings' component={Listings} />
-      <Route path='/login' component={LoginForm} />
+      <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       <Route path='/profile' component={Profile} />
       <Route path='/sendmessage' component={SendMessage} />
