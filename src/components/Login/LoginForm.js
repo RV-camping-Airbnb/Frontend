@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -14,7 +14,8 @@ import Grid from '@material-ui/core/Grid';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import RVFour from '../../images/rv4.jpg'
+import RVFour from '../../images/rv4.jpg';
+import { axiosWithoutAuth as axios } from '../../axiosutils'
 
 function Copyright() {
   return (
@@ -54,9 +55,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function LoginForm({ values, isSubmitting }) {
+function LoginForm(props) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
+
+  const forwardUser = () => {(props.history.push('/'))};
+
+  useEffect(() => {
+    if (props.status) {
+      setUsers([ ...users, props.status ])
+      forwardUser();
+    }
+  }, [props.status])
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -100,7 +110,7 @@ function LoginForm({ values, isSubmitting }) {
               label="Remember me"
             />
             <Button 
-              disabled={isSubmitting}
+              disabled={props.isSubmitting}
               type="submit"
               fullWidth
               variant="contained"
@@ -111,7 +121,7 @@ function LoginForm({ values, isSubmitting }) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to='/reset-password' variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
@@ -149,9 +159,19 @@ export default withFormik({
       .required("Password is required"),
   }),
 
-  handleSubmit(values, { resetForm, setSubmitting }) {
-    resetForm();
-    setSubmitting(false);
+  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+    axios()
+    .post('/login', values)
+    .then(res => {
+      setStatus(res.data)
+      console.log(res.data, 'User has been logged in!');
+      resetForm();
+      setSubmitting(false);
+    })
+    .catch(err => {
+      console.log(err.res, 'Failed to login user to the database!');
+      setSubmitting(false);
+    });  
   }
 
 })(LoginForm);
