@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';

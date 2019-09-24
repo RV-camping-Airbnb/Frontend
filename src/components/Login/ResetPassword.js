@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -11,9 +10,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    margin: '0 auto',
+    margin: '5% auto',
     width: '40%',
     height: '500px',
+    padding: '1%'
   },
   content: {
     padding: '1% 20%'
@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
   header: {
     margin: '1% auto',
     fontSize: '3rem',
-    textAlign: 'center'
+    textAlign: 'center',
+    
   },
   line: {
     width: '10%',
