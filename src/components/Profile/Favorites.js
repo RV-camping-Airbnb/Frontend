@@ -135,7 +135,7 @@ const Favorites = (props) => {
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Favorite Listings:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-            {data.map((item, index) => (
+            {listing.map((item, index) => (
              
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
