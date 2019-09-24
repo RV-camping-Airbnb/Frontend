@@ -1,121 +1,127 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { CTX } from '../../store/Store';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Rating from '@material-ui/lab/Rating';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
-import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '0 auto',
-    width: '80%',
-    height: '500px',
-    backgroundColor: 'white',
+    margin: '3rem auto',
+    width: '40%',
     padding: theme.spacing(3, 2),
+    textAlign: 'center',
   },
-  example: {
+  avatar: {
+    backgroundColor: '#E4DFDA',
+    color: ''
+  },
+  chip: {
+    backgroundColor: '#5C9EAD',
+    color: 'white',
+    fontWeight: '600'
+  },
+  flex: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    margin: '1% auto 0',
+    padding: '2%',
+  },
+  memberList: {
+    width: '15%',
+    height: '300px',
+    borderRight: '1px solid black',
+  },
+  chatWindow: {
     width: '80%',
-    padding: '1%'
-  },
-  grid: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '0 auto',
-    width: '80%',
-    padding: '0 1%',
-    cursor: 'pointer',
-  },
-  favContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    margin: '1% auto',
-    width: '100%',
+    height: '300px',
     padding: '1%',
-    boxShadow: '1px 3px 5px'
+    overflowY: 'scroll'
   },
-  heading: {
-    fontSize:'1.6rem',
-    margin: '0 auto'
+  chatBox: {
+    width: '65%',
+    margin: '1% 3% 0 17%'
   },
-  image: {
-    '&:hover': {
-      transform: 'scale(1.05)',
-    }
-  },
-  colorSecondary: {
-    color: theme.palette.secondary.main,
+  sendButton: {
+    width: '15%',
+    margin: '1% 2% 0 0'
   },
 }));
 
-const SendMessage = (props) => {
+function SendMessage() {
   const classes = useStyles();
-  console.log(props.listing)
-  
-  return (
-      <div>
-        <div>
-          <Paper className={classes.example}>
-            <h1 className={classes.heading}>Listing:</h1>
-            <Grid container wrap="wrap" className={classes.grid}>
-            {props.listing.map((item, index) => (
-             
-              <Box key={index} width={220} margin={1} my={5} className={classes.image}>
-                {item ? (
-                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
-                ) : (
-                  <Skeleton variant="rect" width={220} height={120} />
-                )}
 
-                {item ? (
-                  <Box paddingRight={2} className={classes.favContent}>
-                    <Typography gutterBottom variant="body2">
-                      {item.title}
-                    </Typography>
-                    <Typography display="block" variant="caption" color="textSecondary">
-                      {item.location}
-                    </Typography>
-                    <Typography variant="caption" color="textSecondary">
-                      {`${item.views} • ${item.createdAt}`}
-                    </Typography>
-                    <Rating name="half-rating" value={4.5} precision={0.5} />
-                    <div>
-                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.addToFavoritesList(item)}>
-                        <FavoriteIcon />
-                      </IconButton>
-                      <IconButton aria-label="share">
-                        <ShareIcon />
-                      </IconButton>
-                    </div>
-                  </Box>
-                ) : (
-                  <React.Fragment>
-                    <Skeleton />
-                    <Skeleton width="60%" />
-                  </React.Fragment>
-                )}
-              </Box>
-              ))}
-            </Grid>
-          </Paper>
+  // CTX Store
+  const {allChats, sendChatAction, user} = useContext(CTX);
+  const users = Object.keys(allChats);
+
+  // Local State
+  const [activeChat, setActiveChat] = useState(users[0]);
+  const [textValue, setTextValue] = useState('');
+
+  return (
+    <div>
+      <Paper className={classes.root}>
+        <Typography variant="h4" component="h4">
+          RVNB Member Chat
+        </Typography>
+        <Typography variant="h5" component="h5">
+          You are now connected with {activeChat}
+        </Typography>
+        <div className={classes.flex}>
+          <div className={classes.memberList}>
+            <List>
+              {
+                users.map(user =>
+                  <ListItem onClick={e => setActiveChat(e.target.innerText)} key={user} button>
+                    <ListItemText primary={user} />
+                  </ListItem>
+                  )
+              }
+            </List>
+          </div>
+          <div className={classes.chatWindow}>
+            {
+              allChats[activeChat].map((chat, index) =>
+                <div className={classes.flex} key={index} button>
+                  <Chip 
+                    avatar={<Avatar className={classes.avatar}>RV</Avatar>}
+                    label={chat.from}
+                    className={classes.chip}
+                  />
+                  <Typography variant="body1">: {chat.msg}</Typography>
+                </div>
+                )
+              }
+          </div>
         </div>
+        <div className={classes.flex}>
+          <TextField
+            label="Send a message."
+            className={classes.chatBox}
+            value={textValue}
+            onChange={e => setTextValue(e.target.value)}
+          />
+          <Button 
+            variant="contained" 
+            color="primary" 
+            className={classes.sendButton}
+            onClick={() => {
+              sendChatAction({ from: user, msg: textValue, user: activeChat }); 
+              setTextValue('')
+            }}
+          >
+              Send
+          </Button>
+        </div>
+      </Paper>
     </div>
-  );
+  )
 }
 
 export default SendMessage;

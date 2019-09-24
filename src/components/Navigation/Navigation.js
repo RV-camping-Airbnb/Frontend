@@ -164,10 +164,10 @@ function Navigation() {
         <Divider />
         <List>
           <ListItem button>
-           <NavLink to='/sendmessage' className={classes.menuLink} onClick={handleDrawerClose}>
+           <NavLink to='/messenger' className={classes.menuLink} onClick={handleDrawerClose}>
              <SendIcon />
              <ListItemText className={classes.menuText}>
-               Send Message
+               Messenger
              </ListItemText>
            </NavLink>
          </ListItem>
