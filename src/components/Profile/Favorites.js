@@ -9,11 +9,12 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import { data, listings } from './Data';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     margin: '0 auto',
     width: '80%',
     height: '500px',
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   grid: {
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     margin: '0 auto',
     width: '80%',
@@ -62,80 +64,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const data = [
-  {
-    id: 1,
-    src: 'https://source.unsplash.com/random',
-    title: 'Property One',
-    location: 'San Jose, CA',
-    views: '396 k views',
-    createdAt: 'a week ago',
-    isFavorited: false
-  },
-  {
-    id: 2,
-    src: 'https://source.unsplash.com/random',
-    title: 'Property Two',
-    location: 'Paris, France',
-    views: '2.1 M views',
-    createdAt: '4 months ago',
-    isFavorited: false
-  },
-  {
-    id: 3,
-    src: 'https://source.unsplash.com/random',
-    title: 'Property Three',
-    location: 'Tampa, FL',
-    views: '130 M views',
-    createdAt: '10 months ago',
-    isFavorited: false
-  },
-  {
-    id: 4,
-    src: 'https://source.unsplash.com/random',
-    title: 'Property Four',
-    location: 'Lake Tahoe, CA',
-    views: '112 k views',
-    createdAt: 'a week ago',
-    isFavorited: false
-  },
-  {
-    id: 5,
-    src: 'https://source.unsplash.com/random',
-    title: 'Property Five',
-    location: 'Dallas, TX',
-    views: '112 views',
-    createdAt: '4 hours ago',
-    isFavorited: false
-  },
-];
-
 const Favorites = (props) => {
-  const [listing, setListing] = useState(data)
   const classes = useStyles();
-  const [favoriteList, setFavoriteList] = useState(data);
-
-  console.log(favoriteList)
-
-  const addToFavoritesList = listing => {
-    const present = favoriteList.find(el => el.id === listing.id)
-
-    if (!present.isFavorited) {
-      listing.isFavorited = true;
-      setFavoriteList( [...favoriteList, listing] );
-    } else {
-      listing.isFavorited = false;
-      setFavoriteList( [...favoriteList, listing] );
-    }
-  };
-
+  console.log(props.favoriteList)
+  
   return (
     <div className="saved-list">
         <div>
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Favorite Listings:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-            {listing.map((item, index) => (
+            {props.favoriteList.map((item, index) => (
              
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
@@ -157,7 +96,7 @@ const Favorites = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => addToFavoritesList(item)}>
+                      <IconButton classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.deleteFavorite(item.id)}>
                         <FavoriteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
