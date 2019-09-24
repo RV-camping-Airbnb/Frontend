@@ -200,25 +200,19 @@ export default withFormik({
       .required("Please select a member type.")
   }),
 
-  handleSubmit(values, { resetForm, setSubmitting, setStatus, setErrors }) {
-    if (values.email === 'email') {
-      setErrors({ email: "You already signed up OR you are stealing emails!" });
-    } else {
-      console.log(values)
-      axios()
-      .post('/signup', values)
-      .then(res => {
-        setStatus(res.data)
-        console.log(res.data, 'User has been added to the database!');
-        resetForm();
-        setSubmitting(false);
-      })
-      .catch(err => {
-        console.log(err.res, 'Failed to add new user to the database!');
-        setSubmitting(false);
-      })
-    };  
+  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+    axios()
+    .post('/signup', values)
+    .then(res => {
+      setStatus(res.data)
+      console.log(res.data, 'User has been added to the database!');
+      resetForm();
+      setSubmitting(false);
+    })
+    .catch(err => {
+      console.log(err.res, 'Failed to add new user to the database!');
+      setSubmitting(false);
+    })
   }
-
 
 })(SignUpForm);
