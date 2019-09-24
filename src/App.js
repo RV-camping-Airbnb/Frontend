@@ -18,18 +18,16 @@ function App() {
   const [favoriteList, setFavoriteList] = useState(listings);
 
   const addToFavoritesList = listing => {
-    const updatedList = (favoriteList.find(el => el.id === listing.id))
+    const updatedList = (favoriteList.includes(el => el.id === listing.id))
+    console.log(updatedList)
 
     if (!updatedList.isFavorited) {
       listing.isFavorited = true;
       setFavoriteList( [...favoriteList, listing] );
-    } else if (updatedList && listing.isFavorited === true) {
+    } else {
       listing.isFavorited = false;
-      deleteFavorite()
-    } else if (updatedList && listing.isFavorited === false) {
-      listing.isFavorited = true;
       setFavoriteList( [...favoriteList, listing] );
-    }
+    } 
   }
 
   const deleteFavorite = (id) => {

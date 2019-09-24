@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 const SendMessage = (props) => {
   const classes = useStyles();
-  console.log(props.favoriteList)
+  console.log(props.listing)
   
   return (
       <div>
