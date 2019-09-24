@@ -13,7 +13,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import RVOne from '../../images/rv1.jpg';
-import { axiosWithoutAuth as axios } from '../../axiosutils';
+import { axiosWithoutAuth as axios } from '../../utils/axiosutils';
 
 function Copyright() {
   return (
@@ -63,7 +63,6 @@ const useStyles = makeStyles(theme => ({
 
 function SignUpForm(props) {
   const [users, setUsers] = useState([])
-  console.log(props)
   const classes = useStyles();
 
   const forwardUser = () => {(props.history.push('/'))};
@@ -73,6 +72,7 @@ function SignUpForm(props) {
       setUsers([ ...users, props.status ])
       forwardUser();
     }
+    console.log(users)
   }, [props.status])
 
   return (
@@ -89,25 +89,25 @@ function SignUpForm(props) {
           <Form>
             <Field 
               type="text" 
-              name="fname" 
+              name="first_name" 
               label="First Name"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="fname"
+              id="first_name"
             />
             <Field 
               type="text" 
-              name="lname" 
+              name="last_name" 
               label="Last Name"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="lname"
+              id="last_name"
             />
             <Field
               type="email"
@@ -135,8 +135,8 @@ function SignUpForm(props) {
             {props.touched.member && props.errors.member && <p className="error">{props.errors.member}</p>}
             <Field className={classes.dropdown} component="select" name="member">
               <option value="" disabled>Select Account Type *</option>
-              <option value="rv-owner">RV Owner</option>
-              <option value="land-owner">Land Owner</option>
+              <option value="false">RV Owner</option>
+              <option value="true">Land Owner</option>
             </Field>
             <Button 
               disabled={props.isSubmitting}
@@ -172,11 +172,11 @@ function SignUpForm(props) {
 }
 
 export default withFormik({
-  mapPropsToValues({ fname, lname, email, password, member }) {
+  mapPropsToValues({ first_name, last_name, email, password, member }) {
     
     return {
-      fname: fname || "",
-      lname: lname || "",
+      first_name: first_name || "",
+      last_name: last_name || "",
       email: email || "",
       password: password || "",
       member: member || ""
@@ -184,10 +184,10 @@ export default withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    fname: Yup.string().required()
+    first_name: Yup.string().required()
       .min(3,"First name is not valid")
       .required("First name is required"),
-    lname: Yup.string().required()
+    last_name: Yup.string().required()
       .min(3,"Last name is not valid")
       .required("Last name is required"),
     email: Yup.string()
@@ -201,6 +201,7 @@ export default withFormik({
   }),
 
   handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+    console.log(values)
     axios()
     .post('/signup', values)
     .then(res => {

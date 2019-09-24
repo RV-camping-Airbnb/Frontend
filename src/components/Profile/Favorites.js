@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
 import Rating from '@material-ui/lab/Rating';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -18,26 +17,8 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
     width: '80%',
     height: '500px',
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white',
     padding: theme.spacing(3, 2),
-  },
-  bio: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '25%',
-    height: '95%',
-  },
-  bigAvatar: {
-    margin: 10,
-    width: 200,
-    height: 200,
-    backgroundColor: 'gray',
-    border: '2px solid black',
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
   },
   example: {
     display: 'flex',
@@ -46,12 +27,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     margin: '1% auto 0',
     width: '80%',
-    height: '425px',
     padding: '1%'
   },
   grid: {
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
     margin: '0 auto',
     width: '80%',
@@ -132,10 +111,11 @@ const data = [
 ];
 
 const Favorites = (props) => {
-  const [listing, setListing] = useState(data);
+  const [listing, setListing] = useState(data)
   const classes = useStyles();
   const [favoriteList, setFavoriteList] = useState(data);
-  const [className, setClassName] = useState();
+
+  console.log(favoriteList)
 
   const addToFavoritesList = listing => {
     const present = favoriteList.find(el => el.id === listing.id)
@@ -151,18 +131,17 @@ const Favorites = (props) => {
 
   return (
     <div className="saved-list">
-      {favoriteList.map(listing => (
         <div>
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Favorite Listings:</h1>
-            <Grid container wrap="nowrap" className={classes.grid}>
+            <Grid container wrap="wrap" className={classes.grid}>
             {data.map((item, index) => (
              
-              <Box key={index} width={260} margin={1} my={5} className={classes.image}>
+              <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
                   <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
                 ) : (
-                  <Skeleton variant="rect" width={260} height={140} />
+                  <Skeleton variant="rect" width={220} height={120} />
                 )}
 
                 {item ? (
@@ -197,7 +176,6 @@ const Favorites = (props) => {
             </Grid>
           </Paper>
         </div>
-      ))}
     </div>
   );
 }

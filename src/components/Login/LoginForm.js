@@ -15,7 +15,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import RVFour from '../../images/rv4.jpg';
-import { axiosWithoutAuth as axios } from '../../axiosutils'
+import { axiosWithoutAuth as axios } from '../../utils/axiosutils'
 
 function Copyright() {
   return (
