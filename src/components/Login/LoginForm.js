@@ -59,6 +59,8 @@ function LoginForm(props) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
 
+  console.log(props.status)
+
   const forwardUser = () => {(props.history.push('/'))};
 
   useEffect(() => {

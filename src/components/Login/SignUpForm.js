@@ -65,6 +65,8 @@ function SignUpForm(props) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
 
+  console.log(props.status)
+
   const forwardUser = () => {(props.history.push('/'))};
 
   useEffect(() => {
@@ -217,7 +219,7 @@ export default withFormik({
 
   handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/signup', values)
+    .post('/register', values)
     .then(res => {
       setStatus(res.data)
       console.log(res.data, 'User has been added to the database!');
