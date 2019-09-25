@@ -9,7 +9,7 @@ const Background = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 85vh;
+  height: 90vh;
   background-size: cover;
 `;
 
