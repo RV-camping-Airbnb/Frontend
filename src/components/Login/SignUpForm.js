@@ -121,6 +121,17 @@ function SignUpForm(props) {
               fullWidth
               autoComplete="email"
             />
+             <Field 
+              type="text" 
+              name="username" 
+              label="Username"
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+            />
             <Field
               name="password"
               type="password"
@@ -172,27 +183,31 @@ function SignUpForm(props) {
 }
 
 export default withFormik({
-  mapPropsToValues({ first_name, last_name, email, password, member }) {
+  mapPropsToValues({ first_name, last_name, email, username, password, member }) {
     
     return {
       first_name: first_name || "",
       last_name: last_name || "",
       email: email || "",
+      username: username || "",
       password: password || "",
       member: member || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    first_name: Yup.string().required()
+    first_name: Yup.string()
       .min(3,"First name is not valid")
       .required("First name is required"),
-    last_name: Yup.string().required()
+    last_name: Yup.string()
       .min(3,"Last name is not valid")
       .required("Last name is required"),
     email: Yup.string()
       .email("Email not valid")
       .required("Email is required"),
+    username: Yup.string()
+      .min(3,"Username is not valid")
+      .required("Username is required"),
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),

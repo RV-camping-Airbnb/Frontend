@@ -82,15 +82,15 @@ function LoginForm(props) {
           </Typography>
           <Form>
             <Field
-              type="email"
-              name="email"
+              type="text"
+              name="username"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Username"
               autoComplete="email"
             />
             <Field
@@ -142,18 +142,18 @@ function LoginForm(props) {
 }
 
 export default withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ username, password }) {
     
     return {
-      email: email || "",
+      username: username || "",
       password: password || "",
     };
   },
 
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email("Email not valid")
-      .required("Email is required"),
+    username: Yup.string()
+      .min(3, "Username not valid")
+      .required("Username is required"),
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),

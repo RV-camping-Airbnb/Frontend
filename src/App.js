@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+// import PrivateRoute from './components/auth/PrivateRoute';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';
 import LoginForm from './components/Login/LoginForm';
@@ -8,7 +9,8 @@ import ResetPassword from './components/Login/ResetPassword';
 import SignUpForm from './components/Login/SignUpForm';
 import Favorites from './components/Profile/Favorites';
 import Profile from './components/Profile/Profile';
-import FakeListings from './components/Listings/FakeListings';
+import FakeListingCard from './components/Listings/FakeListingCard';
+import FakeListing from './components/Listings/FakeListing';
 import Messenger from './components/Profile/Messenger';
 import SpeedDialer from './components/Navigation/SpeedDialer';
 import { data, listings } from './components/Profile/Data';
@@ -16,6 +18,9 @@ import { data, listings } from './components/Profile/Data';
 function App() {
   const [listing, setListing] = useState(data)
   const [favoriteList, setFavoriteList] = useState(listings);
+  const [booked, setBooked] = useState(false)
+  const [bookedList, setBookedList] = useState(listings);
+  
 
   const addToFavoritesList = listing => {
     const updatedList = (favoriteList.includes(el => el.id === listing.id))
@@ -36,19 +41,35 @@ function App() {
     setFavoriteList(updatedList)
   }
 
+  const addToBooked = listing => {
+    setBooked(true);
+  }
+
+  const addToBookedList = listing => {
+    setBookedList([...bookedList, listing])
+  }
+
+  const deleteBooked = (id) => {
+    const updatedList = bookedList.filter((listing) => listing.id !== id)
+    setBookedList(updatedList)
+  }
+
   return (
     <>
     <Navigation />
     <Switch>
+      {/* <PrivateRoute path='/profile' component={Profile} /> */}
       <Route exact path='/' component={HomePage} />
       <Route path='/reset-password' component={ResetPassword} />
-      <Route path='/listings' render={props => <FakeListings {...props} addToFavoritesList={addToFavoritesList} listing={listing} favoriteList={favoriteList} /> } />/>
+      <Route path='/fakelistings' render={props => <FakeListingCard {...props} addToFavoritesList={addToFavoritesList} listing={listing} favoriteList={favoriteList} booked={booked} addToBooked={addToBooked} addToBookingList={addToBookedList} /> } />
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       <Route path='/profile' component={Profile} />
       <Route path='/messenger' component={Messenger} />
       <Route path='/signup' component={SignUpForm} />
       <Route path='/favorites' render={props => <Favorites {...props} deleteFavorite={deleteFavorite} listing={listing} favoriteList={favoriteList} /> } />
+      <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
+      <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
     </Switch>
     <SpeedDialer />
     </>
