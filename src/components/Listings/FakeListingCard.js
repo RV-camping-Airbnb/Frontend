@@ -7,7 +7,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
@@ -54,6 +53,8 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto'
   },
   image: {
+    width: '100%',
+    margin: '1%',
     '&:hover': {
       transform: 'scale(1.05)',
     }
@@ -65,7 +66,7 @@ const useStyles = makeStyles(theme => ({
 
 const FakeListingCard = (props) => {
   const classes = useStyles();
-  console.log(props.listing)
+  console.log(props.post)
   
   return (
       <div>
@@ -73,34 +74,32 @@ const FakeListingCard = (props) => {
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Listing:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-            {props.listing.map((item, index) => (
-             
-              <Box key={index} width={220} margin={1} my={5} className={classes.image}>
-                {item ? (
-                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.img} />
+              <Box key={props.post.index} className={classes.favContent}>
+                {props.post ? (
+                  <img className={classes.image} alt={props.post.title} src={props.post.img} />
                 ) : (
                   <Skeleton variant="rect" width={220} height={120} />
                 )}
 
-                {item ? (
+                {props.post ? (
                   <Box paddingRight={2} className={classes.favContent}>
                     <Typography gutterBottom variant="body2">
-                      {item.title}
+                      {props.post.title}
                     </Typography>
                     <Typography display="block" variant="caption" color="textSecondary">
-                      {item.address}
+                      {props.post.address}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                      {`${item.state} • ${item.price}`}
+                      {`${props.post.state} • ${props.post.price}`}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                      {item.description}
+                      {props.post.description}
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.addToBooked(item)}>
-                        <FavoriteIcon />
-                      </IconButton>
+                      <button aria-label="add to favorites" classes={{ 'root': props.post.isFavorited && classes.colorSecondary }} onClick={() =>     props.addToBooked(props.post)}>
+                        BOOK
+                      </button>
                       <IconButton aria-label="share">
                         <ShareIcon />
                       </IconButton>
@@ -113,7 +112,6 @@ const FakeListingCard = (props) => {
                   </React.Fragment>
                 )}
               </Box>
-              ))}
             </Grid>
           </Paper>
         </div>

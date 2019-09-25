@@ -73,7 +73,7 @@ function SignUpForm(props) {
       forwardUser();
     }
     console.log(users)
-  }, [props.status])
+  }, [props.status, users])
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -217,9 +217,10 @@ export default withFormik({
 
   handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/signup', values)
+    .post('/register', values)
     .then(res => {
       setStatus(res.data)
+      localStorage.setItem('token', res.data.token)
       console.log(res.data, 'User has been added to the database!');
       resetForm();
       setSubmitting(false);
