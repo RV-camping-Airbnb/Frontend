@@ -74,7 +74,7 @@ const FakeListingCard = (props) => {
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Listing:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-              <Box key={props.post.index} className={classes.favContent}>
+              <Box key={props.post.id} className={classes.favContent}>
                 {props.post ? (
                   <img className={classes.image} alt={props.post.title} src={props.post.img} />
                 ) : (

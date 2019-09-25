@@ -174,18 +174,10 @@ function Navigation() {
             </NavLink>
           </ListItem >
           <ListItem button>
-            <NavLink to='/fakelistings' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/posts' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
-                Fake Listings
-              </ListItemText>
-            </NavLink>
-          </ListItem >
-          <ListItem button>
-            <NavLink to='/fakelisting' className={classes.menuLink} onClick={handleDrawerClose}>
-              <ViewListIcon />
-              <ListItemText className={classes.menuText}>
-                Fake LISTING
+                Fake Posts
               </ListItemText>
             </NavLink>
           </ListItem >

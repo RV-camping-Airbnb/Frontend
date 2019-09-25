@@ -19,10 +19,10 @@ import { data, listings } from './components/Profile/Data';
 
 
 function App() {
-  const [listing, setListing] = useState([])
-  console.log(listing)
+  const [listing, setListing] = useState([]);
+  console.log(listing, "I am in App.js")
   const [favoriteList, setFavoriteList] = useState(listings);
-  const [booked, setBooked] = useState(false)
+  const [booked, setBooked] = useState(false);
   const [bookedList, setBookedList] = useState(data);
 
   useEffect(() => {
@@ -84,10 +84,9 @@ function App() {
       <Route path='/messenger' component={Messenger} />
       <Route path='/signup' component={SignUpForm} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
-      <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked}/> } />
-      <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
-      <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
-      <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />
+      <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
+      <Route path='/posts/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
+      <Route path='/posts' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
     </Switch>
     <SpeedDialer />
     </>
