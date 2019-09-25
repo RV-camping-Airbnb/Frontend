@@ -7,7 +7,7 @@ const FakeListingList = props => {
   return (
     <>
       {props.listing.map((post, index) => (
-        <Link to={`/fakelisting/${post.id}`}><FakeListingCard key={index} post={post} addToBooked={props.addToBooked} addToBookedList={props.addToBookedList} /></Link>
+        <Link to={`/fakelisting/${post.id}`}><FakeListingCard key={post.post_id} post={post} {...props} /></Link>
       ))}
     </>
   );
