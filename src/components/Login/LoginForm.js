@@ -66,7 +66,7 @@ function LoginForm(props) {
       setUsers([ ...users, props.status ])
       forwardUser();
     }
-  }, [props.status])
+  }, [props.status, users])
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -90,7 +90,7 @@ function LoginForm(props) {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               autoComplete="email"
             />
             <Field
@@ -152,8 +152,8 @@ export default withFormik({
 
   validationSchema: Yup.object().shape({
     email: Yup.string()
-      .email("Email not valid")
-      .required("Email is required"),
+      .email("Username not valid")
+      .required("Username is required"),
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),
@@ -164,6 +164,7 @@ export default withFormik({
     .post('/login', values)
     .then(res => {
       setStatus(res.data)
+      localStorage.setItem('token', res.data.token)
       console.log(res.data, 'User has been logged in!');
       resetForm();
       setSubmitting(false);

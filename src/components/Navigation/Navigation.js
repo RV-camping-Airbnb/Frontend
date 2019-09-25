@@ -19,6 +19,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import SendIcon from '@material-ui/icons/Send';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import RvHookupIcon from '@material-ui/icons/RvHookup';
+import RVNBIcon from '../../images/RVNBIcon.svg';
 
 const drawerWidth = 240;
 
@@ -75,6 +76,9 @@ const drawerWidth = 240;
     },
     menuText: {
       marginLeft: '25px'
+    },
+    icon: {
+      marginLeft: '1%'
     }
   }));
 
@@ -93,6 +97,7 @@ function Navigation() {
 
   return (
     <div className={classes.root}>
+      <img className={classes.icon} src={RVNBIcon} alt='Icon' />
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
@@ -129,7 +134,7 @@ function Navigation() {
         <Divider />
         <List>
           <ListItem button>
-            <NavLink to='/' className={classes.menuLink}>
+            <NavLink to='/' className={classes.menuLink} onClick={handleDrawerClose}>
               <HomeIcon />
               <ListItemText className={classes.menuText}>
                 Home
@@ -137,7 +142,7 @@ function Navigation() {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/profile' className={classes.menuLink}>
+            <NavLink to='/profile' className={classes.menuLink} onClick={handleDrawerClose}>
               <PersonIcon />
               <ListItemText className={classes.menuText}>
                 Profile
@@ -145,7 +150,7 @@ function Navigation() {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/favorites' className={classes.menuLink}>
+            <NavLink to='/favorites' className={classes.menuLink} onClick={handleDrawerClose}>
               <FavoriteIcon />
               <ListItemText className={classes.menuText}>
                 Favorites
@@ -153,10 +158,34 @@ function Navigation() {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/listings' className={classes.menuLink}>
+            <NavLink to='/booking' className={classes.menuLink} onClick={handleDrawerClose}>
+              <FavoriteIcon />
+              <ListItemText className={classes.menuText}>
+                Booking
+              </ListItemText>
+            </NavLink>
+          </ListItem>
+          <ListItem button>
+            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Listings
+              </ListItemText>
+            </NavLink>
+          </ListItem >
+          <ListItem button>
+            <NavLink to='/fakelistings' className={classes.menuLink} onClick={handleDrawerClose}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Fake Listings
+              </ListItemText>
+            </NavLink>
+          </ListItem >
+          <ListItem button>
+            <NavLink to='/fakelisting' className={classes.menuLink} onClick={handleDrawerClose}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Fake LISTING
               </ListItemText>
             </NavLink>
           </ListItem >
@@ -164,15 +193,15 @@ function Navigation() {
         <Divider />
         <List>
           <ListItem button>
-           <NavLink to='/sendmessage' className={classes.menuLink}>
+           <NavLink to='/messenger' className={classes.menuLink} onClick={handleDrawerClose}>
              <SendIcon />
              <ListItemText className={classes.menuText}>
-               Send Message
+               Messenger
              </ListItemText>
            </NavLink>
          </ListItem>
          <ListItem button>
-           <NavLink to='/signup' className={classes.menuLink}>
+           <NavLink to='/signup' className={classes.menuLink} onClick={handleDrawerClose}>
              <RvHookupIcon />
              <ListItemText className={classes.menuText}>
                Sign-Up
@@ -180,7 +209,7 @@ function Navigation() {
            </NavLink>
          </ListItem>
          <ListItem button>
-           <NavLink to='/login' className={classes.menuLink}>
+           <NavLink to='/login' className={classes.menuLink} onClick={handleDrawerClose}>
              <LockOpenIcon />
              <ListItemText className={classes.menuText}>
                Login
