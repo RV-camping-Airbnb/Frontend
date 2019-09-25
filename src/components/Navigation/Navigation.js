@@ -19,6 +19,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import SendIcon from '@material-ui/icons/Send';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import RvHookupIcon from '@material-ui/icons/RvHookup';
+import RVNBIcon from '../../images/RVNBIcon.svg';
 
 const drawerWidth = 240;
 
@@ -75,6 +76,9 @@ const drawerWidth = 240;
     },
     menuText: {
       marginLeft: '25px'
+    },
+    icon: {
+      marginLeft: '1%'
     }
   }));
 
@@ -93,6 +97,7 @@ function Navigation() {
 
   return (
     <div className={classes.root}>
+      <img className={classes.icon} src={RVNBIcon} alt='Icon' />
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
