@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const FakeListings = (props) => {
+const FakeListingCard = (props) => {
   const classes = useStyles();
   console.log(props.listing)
   
@@ -77,7 +77,7 @@ const FakeListings = (props) => {
              
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
-                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
+                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.img} />
                 ) : (
                   <Skeleton variant="rect" width={220} height={120} />
                 )}
@@ -88,14 +88,17 @@ const FakeListings = (props) => {
                       {item.title}
                     </Typography>
                     <Typography display="block" variant="caption" color="textSecondary">
-                      {item.location}
+                      {item.address}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                      {`${item.views} • ${item.createdAt}`}
+                      {`${item.state} • ${item.price}`}
+                    </Typography>
+                    <Typography variant="caption" color="textSecondary">
+                      {item.description}
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.addToFavoritesList(item)}>
+                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.addToBookedList(item)}>
                         <FavoriteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
@@ -118,4 +121,4 @@ const FakeListings = (props) => {
   );
 }
 
-export default FakeListings;
+export default FakeListingCard;
