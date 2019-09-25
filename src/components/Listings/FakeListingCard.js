@@ -98,7 +98,7 @@ const FakeListingCard = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.addToBookedList(item)}>
+                      <IconButton aria-label="add to favorites" classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.addToBooked(item)}>
                         <FavoriteIcon />
                       </IconButton>
                       <IconButton aria-label="share">

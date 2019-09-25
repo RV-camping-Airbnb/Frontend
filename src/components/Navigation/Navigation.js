@@ -153,10 +153,34 @@ function Navigation() {
             </NavLink>
           </ListItem>
           <ListItem button>
+            <NavLink to='/booking' className={classes.menuLink} onClick={handleDrawerClose}>
+              <FavoriteIcon />
+              <ListItemText className={classes.menuText}>
+                Booking
+              </ListItemText>
+            </NavLink>
+          </ListItem>
+          <ListItem button>
             <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Listings
+              </ListItemText>
+            </NavLink>
+          </ListItem >
+          <ListItem button>
+            <NavLink to='/fakelistings' className={classes.menuLink} onClick={handleDrawerClose}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Fake Listings
+              </ListItemText>
+            </NavLink>
+          </ListItem >
+          <ListItem button>
+            <NavLink to='/fakelisting' className={classes.menuLink} onClick={handleDrawerClose}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Fake LISTING
               </ListItemText>
             </NavLink>
           </ListItem >

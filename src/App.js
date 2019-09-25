@@ -18,6 +18,8 @@ function App() {
   const [listing, setListing] = useState(data)
   const [favoriteList, setFavoriteList] = useState(listings);
   const [booked, setBooked] = useState(false)
+  const [bookedList, setBookedList] = useState(listings);
+  
 
   const addToFavoritesList = listing => {
     const updatedList = (favoriteList.includes(el => el.id === listing.id))
@@ -32,14 +34,23 @@ function App() {
     } 
   }
 
-  const addToBooked = listing => {
-    setBooked(true);
-  }
-
   const deleteFavorite = (id) => {
     const updatedList = favoriteList.filter((listing) => listing.id !== id)
     listing.isFavorited = false;
     setFavoriteList(updatedList)
+  }
+
+  const addToBooked = listing => {
+    setBooked(true);
+  }
+
+  const addToBookedList = listing => {
+    setBookedList([...bookedList, listing])
+  }
+
+  const deleteBooked = (id) => {
+    const updatedList = bookedList.filter((listing) => listing.id !== id)
+    setBookedList(updatedList)
   }
 
   return (
@@ -48,7 +59,7 @@ function App() {
     <Switch>
       <Route exact path='/' component={HomePage} />
       <Route path='/reset-password' component={ResetPassword} />
-      <Route path='/listings' render={props => <FakeListingCard {...props} addToFavoritesList={addToFavoritesList} listing={listing} favoriteList={favoriteList} booked={booked} addToBooked={addToBooked} /> } />/>
+      <Route path='/fakelistings' render={props => <FakeListingCard {...props} addToFavoritesList={addToFavoritesList} listing={listing} favoriteList={favoriteList} booked={booked} addToBooked={addToBooked} addToBookingList={addToBookedList} /> } />
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       <Route path='/profile' component={Profile} />
