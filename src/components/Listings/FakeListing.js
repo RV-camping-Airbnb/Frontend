@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosWithoutAuth as axios} from '../../utils/axiosutils';
 import FakeListingCard from './FakeListingCard';
 
 const FakeListing = (props) => {
-  const [listing, setMovie] = useState();
+  const [listing, setListing] = useState();
+  console.log(props.listing)
+  console.log(props)
  
   useEffect(() => {
     const id = props.match.params.id;
 
-      axios
-      .get(`/listing/${id}`)
+      axios()
+      .get(`/posts/${id}`)
       .then(response => {
-        setMovie(response.data);
+        console.log(response.data, "Gathering a single post id.")
+        setListing(response.data);
       })
       .catch(error => {
-        console.error(error);
+        console.error(error, "There was an issue retrieving the data.");
       });
 
   },[props.match.params.id]);

@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteIcon from '@material-ui/icons/Delete';
 import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
@@ -95,8 +95,8 @@ const Favorites = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.deleteFavorite(item.id)}>
-                        <FavoriteIcon />
+                      <IconButton onClick={() => props.deleteFavorite(item.id)}>
+                        <DeleteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
                         <ShareIcon />

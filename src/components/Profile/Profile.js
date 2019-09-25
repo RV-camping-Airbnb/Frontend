@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
 import Rating from '@material-ui/lab/Rating';
-import Favorites from './Favorites';
 import BgImage from '../../images/bgImage.jpg';
 import RV3 from '../../images/rv3.jpg';
 
