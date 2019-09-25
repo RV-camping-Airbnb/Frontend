@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+// import PrivateRoute from './components/auth/PrivateRoute';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';
 import LoginForm from './components/Login/LoginForm';
@@ -57,6 +58,7 @@ function App() {
     <>
     <Navigation />
     <Switch>
+      {/* <PrivateRoute path='/profile' component={Profile} /> */}
       <Route exact path='/' component={HomePage} />
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/fakelistings' render={props => <FakeListingCard {...props} addToFavoritesList={addToFavoritesList} listing={listing} favoriteList={favoriteList} booked={booked} addToBooked={addToBooked} addToBookingList={addToBookedList} /> } />
