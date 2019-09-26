@@ -11,7 +11,7 @@ export const axiosWithAuth = () => {
   return axios.create({
     baseURL: 'https://rvnb-app.herokuapp.com',
     headers: {
-      "Authorization": `${token}`,
+      "Authorization": token,
       "Content-Type": 'application/json'
     }
   })
