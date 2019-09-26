@@ -59,6 +59,8 @@ function LoginForm(props) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
 
+  console.log(props.status)
+
   const forwardUser = () => {(props.history.push('/'))};
 
   useEffect(() => {
@@ -164,7 +166,7 @@ export default withFormik({
     .post('/login', values)
     .then(res => {
       setStatus(res.data)
-      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('token', JSON.stringify(res.data.token))
       console.log(res.data, 'User has been logged in!');
       resetForm();
       setSubmitting(false);

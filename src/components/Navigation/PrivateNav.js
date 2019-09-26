@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -82,20 +82,14 @@ const drawerWidth = 240;
     }
   }));
 
-function Navigation() {
+function PrivateNav() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsAuth(true)
-    } else {
-      setIsAuth(false)
-    }
-
-  }, [])
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+  }
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -203,18 +197,10 @@ function Navigation() {
            </NavLink>
          </ListItem>
          <ListItem button>
-           <NavLink to='/signup' className={classes.menuLink} onClick={handleDrawerClose}>
-             <RvHookupIcon />
-             <ListItemText className={classes.menuText}>
-               Sign-Up
-             </ListItemText>
-           </NavLink>
-         </ListItem>
-         <ListItem button>
-           <NavLink to='/login' className={classes.menuLink} onClick={handleDrawerClose}>
+           <NavLink to='/logout' className={classes.menuLink} onClick={handleLogout}>
              <LockOpenIcon />
              <ListItemText className={classes.menuText}>
-               Login
+               Logout
              </ListItemText>
            </NavLink>
          </ListItem>
@@ -224,4 +210,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default PrivateNav;

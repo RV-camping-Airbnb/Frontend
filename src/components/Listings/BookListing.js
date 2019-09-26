@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteIcon from '@material-ui/icons/Delete';
 import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
@@ -63,17 +63,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BookingList = (props) => {
+const BookListing = (props) => {
   const classes = useStyles();
-  console.log(props.booked)
+  console.log(props.bookedList)
   
   return (
     <div className="saved-list">
         <div>
           <Paper className={classes.example}>
-            <h1 className={classes.heading}>Favorite Listings:</h1>
+            <h1 className={classes.heading}>Booked Listings:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-            {props.booked.map((item, index) => (
+            {props.bookedList.map((item, index) => (
              
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
@@ -98,8 +98,8 @@ const BookingList = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.deleteBooking(item.id)}>
-                        <FavoriteIcon />
+                      <IconButton classes={{ 'root': item.isFavorited && classes.colorSecondary }} onClick={() => props.deleteBooked(item.id)}>
+                        <DeleteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
                         <ShareIcon />
@@ -121,4 +121,4 @@ const BookingList = (props) => {
   );
 }
 
-export default Favorites;
+export default BookListing;

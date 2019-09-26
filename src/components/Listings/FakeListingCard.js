@@ -54,7 +54,6 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     width: '100%',
-    margin: '1%',
     '&:hover': {
       transform: 'scale(1.05)',
     }
@@ -66,6 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 const FakeListingCard = (props) => {
   const classes = useStyles();
+  console.log(props)
   console.log(props.post)
   
   return (
@@ -74,7 +74,7 @@ const FakeListingCard = (props) => {
           <Paper className={classes.example}>
             <h1 className={classes.heading}>Listing:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-              <Box key={props.post.index} className={classes.favContent}>
+              <Box key={props.post.id} className={classes.favContent}>
                 {props.post ? (
                   <img className={classes.image} alt={props.post.title} src={props.post.img} />
                 ) : (
@@ -97,7 +97,7 @@ const FakeListingCard = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <button aria-label="add to favorites" classes={{ 'root': props.post.isFavorited && classes.colorSecondary }} onClick={() =>     props.addToBooked(props.post)}>
+                      <button aria-label="add to booked" onClick={() => props.addToBooked(props.post)}>
                         BOOK
                       </button>
                       <IconButton aria-label="share">
