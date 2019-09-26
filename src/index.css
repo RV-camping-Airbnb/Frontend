@@ -23,18 +23,21 @@ h1 {
 }
 
 .homePage {
+  background-image: url('./images/Hero1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
   text-align: center;
   margin: 0 auto;
-  width: 80%;
-  height: 50vh;
-  font-size: 2rem;
+  width: 100%;
+  height: 100vh;
 }
 
-.heroImg {
+/* .heroImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
 
 .error {
   color: red;

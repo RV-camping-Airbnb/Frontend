@@ -78,7 +78,11 @@ const drawerWidth = 240;
       marginLeft: '25px'
     },
     icon: {
-      marginLeft: '1%'
+      marginLeft: '3%',
+      width: '200px',
+      ['@media (max-width:400px)']: { 
+        width: '150px',
+      }
     }
   }));
 
