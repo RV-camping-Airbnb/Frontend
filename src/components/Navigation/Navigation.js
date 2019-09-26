@@ -94,7 +94,6 @@ function Navigation() {
     } else {
       setIsAuth(false)
     }
-
   }, [])
 
   function handleDrawerOpen() {
@@ -176,7 +175,7 @@ function Navigation() {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/listingss' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Listings
@@ -192,7 +191,7 @@ function Navigation() {
             </NavLink>
           </ListItem >
           <ListItem button>
-            <NavLink to='/posts' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Fake Posts
