@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -12,7 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import RVOne from '../../images/rv1.jpg'
+import RVOne from '../../images/rv1.jpg';
+import { axiosWithoutAuth as axios } from '../../utils/axiosutils';
 
 function Copyright() {
   return (
@@ -60,10 +61,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SignUpForm({ values, touched, errors, isSubmitting }) {
+function SignUpForm(props) {
   const [users, setUsers] = useState([])
-  console.log(users)
   const classes = useStyles();
+
+  const forwardUser = () => {(props.history.push('/'))};
+
+  useEffect(() => {
+    if (props.status) {
+      setUsers([ ...users, props.status ])
+      forwardUser();
+    }
+    console.log(users)
+  }, [props.status, users])
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -78,26 +88,26 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
           </Typography>
           <Form>
             <Field 
-              type="fname" 
-              name="fname" 
+              type="text" 
+              name="first_name" 
               label="First Name"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="fname"
+              id="first_name"
             />
             <Field 
-              type="lname" 
-              name="lname" 
+              type="text" 
+              name="last_name" 
               label="Last Name"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="lname"
+              id="last_name"
             />
             <Field
               type="email"
@@ -111,6 +121,17 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               fullWidth
               autoComplete="email"
             />
+             <Field 
+              type="text" 
+              name="username" 
+              label="Username"
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+            />
             <Field
               name="password"
               type="password"
@@ -122,14 +143,14 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
               label="Password"
               id="password"
             />
-            {touched.member && errors.member && <p className="error">{errors.member}</p>}
+            {props.touched.member && props.errors.member && <p className="error">{props.errors.member}</p>}
             <Field className={classes.dropdown} component="select" name="member">
               <option value="" disabled>Select Account Type *</option>
-              <option value="rvowner">RV Owner</option>
-              <option value="landowner">Land Owner</option>
+              <option value="false">RV Owner</option>
+              <option value="true">Land Owner</option>
             </Field>
             <Button 
-              disabled={isSubmitting}
+              disabled={props.isSubmitting}
               type="submit"
               fullWidth
               variant="contained"
@@ -140,7 +161,7 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to='/reset-password' variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
@@ -162,27 +183,31 @@ function SignUpForm({ values, touched, errors, isSubmitting }) {
 }
 
 export default withFormik({
-  mapPropsToValues({ fname, lname, email, password, member }) {
+  mapPropsToValues({ first_name, last_name, email, username, password, member }) {
     
     return {
-      fname: fname || "",
-      lname: lname || "",
+      first_name: first_name || "",
+      last_name: last_name || "",
       email: email || "",
+      username: username || "",
       password: password || "",
       member: member || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    fname: Yup.string().required()
+    first_name: Yup.string()
       .min(3,"First name is not valid")
       .required("First name is required"),
-    lname: Yup.string().required()
+    last_name: Yup.string()
       .min(3,"Last name is not valid")
       .required("Last name is required"),
     email: Yup.string()
       .email("Email not valid")
       .required("Email is required"),
+    username: Yup.string()
+      .min(3,"Username is not valid")
+      .required("Username is required"),
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),
@@ -190,9 +215,20 @@ export default withFormik({
       .required("Please select a member type.")
   }),
 
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    resetForm();
-    setSubmitting(false);
+  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+    axios()
+    .post('/register', values)
+    .then(res => {
+      setStatus(res.data)
+      localStorage.setItem('token', res.data.token)
+      console.log(res.data, 'User has been added to the database!');
+      resetForm();
+      setSubmitting(false);
+    })
+    .catch(err => {
+      console.log(err.res, 'Failed to add new user to the database!');
+      setSubmitting(false);
+    })
   }
 
 })(SignUpForm);

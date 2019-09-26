@@ -3,5 +3,9 @@
         "activityBar.background": "#4E006C",
         "titleBar.activeBackground": "#6D0097",
         "titleBar.activeForeground": "#FEFAFF"
-    }
+    },
+    "cSpell.words": [
+        "favorited",
+        "is"
+    ]
 }
