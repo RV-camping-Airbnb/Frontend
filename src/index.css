@@ -22,22 +22,11 @@ h1 {
   margin: 1rem auto;
 }
 
-.homePage {
-  background-image: url('./images/Hero1.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; 
-  text-align: center;
-  margin: 0 auto;
-  width: 100%;
-  height: 100vh;
+button a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
 }
-
-/* .heroImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
 
 .error {
   color: red;

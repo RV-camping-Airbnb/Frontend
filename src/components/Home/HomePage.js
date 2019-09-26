@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Hero from '../../images/Hero1.jpg'
+import { Link } from 'react-router-dom';
 
 const MainContainer = styled.div` 
   background-image: url(${Hero});
@@ -104,11 +105,15 @@ function HomePage() {
           <Para>Search for a location.</Para>
         </Content>
         <CreateButton>
-          Create Listing
+          <Link to='/createlisting'>
+            Create Listing
+          </Link>
         </CreateButton>
         <h2> - OR - </h2>
         <BrowseButton>
-          Browse Listings
+          <Link to='/listings'>
+           Browse Listings
+          </Link>
         </BrowseButton>
       </ContentContainer>
     </MainContainer>
