@@ -82,10 +82,14 @@ const drawerWidth = 240;
     }
   }));
 
-function Navigation() {
+function PrivateNav() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+  }
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -141,7 +145,7 @@ function Navigation() {
               </ListItemText>
             </NavLink>
           </ListItem>
-          {/* <ListItem button>
+          <ListItem button>
             <NavLink to='/profile' className={classes.menuLink} onClick={handleDrawerClose}>
               <PersonIcon />
               <ListItemText className={classes.menuText}>
@@ -164,7 +168,7 @@ function Navigation() {
                 Booking
               </ListItemText>
             </NavLink>
-          </ListItem> */}
+          </ListItem>
           <ListItem button>
             <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
@@ -184,27 +188,19 @@ function Navigation() {
         </List>
         <Divider />
         <List>
-          {/* <ListItem button>
+          <ListItem button>
            <NavLink to='/messenger' className={classes.menuLink} onClick={handleDrawerClose}>
              <SendIcon />
              <ListItemText className={classes.menuText}>
                Messenger
              </ListItemText>
            </NavLink>
-         </ListItem> */}
-         <ListItem button>
-           <NavLink to='/signup' className={classes.menuLink} onClick={handleDrawerClose}>
-             <RvHookupIcon />
-             <ListItemText className={classes.menuText}>
-               Sign-Up
-             </ListItemText>
-           </NavLink>
          </ListItem>
          <ListItem button>
-           <NavLink to='/login' className={classes.menuLink} onClick={handleDrawerClose}>
+           <NavLink to='/logout' className={classes.menuLink} onClick={handleLogout}>
              <LockOpenIcon />
              <ListItemText className={classes.menuText}>
-               Login
+               Logout
              </ListItemText>
            </NavLink>
          </ListItem>
@@ -214,4 +210,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default PrivateNav;
