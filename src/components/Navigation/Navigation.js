@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -86,6 +86,16 @@ function Navigation() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsAuth(true)
+    } else {
+      setIsAuth(false)
+    }
+
+  }, [])
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -141,7 +151,7 @@ function Navigation() {
               </ListItemText>
             </NavLink>
           </ListItem>
-          {/* <ListItem button>
+          <ListItem button>
             <NavLink to='/profile' className={classes.menuLink} onClick={handleDrawerClose}>
               <PersonIcon />
               <ListItemText className={classes.menuText}>
@@ -164,7 +174,7 @@ function Navigation() {
                 Booking
               </ListItemText>
             </NavLink>
-          </ListItem> */}
+          </ListItem>
           <ListItem button>
             <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
@@ -184,14 +194,14 @@ function Navigation() {
         </List>
         <Divider />
         <List>
-          {/* <ListItem button>
+          <ListItem button>
            <NavLink to='/messenger' className={classes.menuLink} onClick={handleDrawerClose}>
              <SendIcon />
              <ListItemText className={classes.menuText}>
                Messenger
              </ListItemText>
            </NavLink>
-         </ListItem> */}
+         </ListItem>
          <ListItem button>
            <NavLink to='/signup' className={classes.menuLink} onClick={handleDrawerClose}>
              <RvHookupIcon />

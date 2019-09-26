@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/auth/PrivateRoute';
-import PrivateNavigation from './components/auth/PrivateNavigation';
 import Navigation from './components/Navigation/Navigation';
-import PrivateNav from './components/Navigation/PrivateNav';
 import HomePage from './components/Home/HomePage';
 import LoginForm from './components/Login/LoginForm';
 import LogOut from './components/Login/LogOut';
@@ -75,7 +73,6 @@ function App() {
 
   return (
     <>
-    <PrivateNavigation path='/' component={PrivateNav} />
     <Navigation />
     <Switch>
       <PrivateRoute path='/profile' component={Profile} />
