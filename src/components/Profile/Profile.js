@@ -5,7 +5,6 @@ import BgImage from '../../images/bgImage.jpg';
 import RV3 from '../../images/rv3.jpg';
 
 const Background = styled.div` 
-  background-image: url(${BgImage});
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,7 +28,7 @@ const Bio = styled.div`
 
 const BigAvatar = styled.img`
     margin-top: -100px;
-    width: 70%;
+    width: 60%;
     height: 50%;
     background-color: gray;
     border: 2px solid black;

@@ -184,6 +184,14 @@ function Navigation() {
             </NavLink>
           </ListItem >
           <ListItem button>
+            <NavLink to='/createlisting' className={classes.menuLink} onClick={handleDrawerClose}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Create Listing
+              </ListItemText>
+            </NavLink>
+          </ListItem >
+          <ListItem button>
             <NavLink to='/posts' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';
+import ListingForm from './components/Listings/ListingForm';
 import LoginForm from './components/Login/LoginForm';
 import LogOut from './components/Login/LogOut';
 import ResetPassword from './components/Login/ResetPassword';
@@ -81,6 +82,7 @@ function App() {
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       {/* <Route path='/profile' component={Profile} /> */}
+      <Route path='/createlisting' component={ListingForm} />
       <Route path='/messenger' component={Messenger} />
       <Route path='/signup' component={SignUpForm} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
