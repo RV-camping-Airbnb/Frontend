@@ -3,8 +3,12 @@ import { axiosWithoutAuth as axios} from '../../utils/axiosutils';
 import ListingCard from './ListingCard';
 import LoadingOverlay from 'react-loading-overlay';
 import styled from 'styled-components';
+import Hero from '../../images/Hero.jpg';
 
 const Loading = styled.div`
+  background-image: url(${Hero});
+  background-position: center;
+  background-size: cover;
   width: 100%;
   height: 100vh;
 `;
