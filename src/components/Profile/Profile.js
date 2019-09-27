@@ -6,31 +6,29 @@ import RV3 from '../../images/rv3.jpg';
 
 const Background = styled.div` 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
+  height: 90vh;
 `;
 
 const Bio = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
   width: 25%;
-  height: 500px;
+  height: 90vh;
+  background-color: #3f51b5;
+  color: white;
 `;
 
-const BigAvatar = styled.img`
-    margin-top: -100px;
-    width: 60%;
-    height: 50%;
-    background-color: gray;
+const ImageContainer = styled.div`
+  width: 50%;
+  height: 25%;
+  margin: 10% auto 5%;
+`;
+
+const Avatar = styled.img`
+    width: 100%;
+    height: 100%;
     border: 2px solid black;
     border-radius: 100%;
     background-image: url(${RV3});
@@ -44,7 +42,9 @@ function Profile() {
   return (
     <Background>
       <Bio>
-        <BigAvatar />
+        <ImageContainer>
+          <Avatar />
+        </ImageContainer>
         <h1>Nick Durbin</h1>
         <h3>Akron, Ohio</h3>
         <h4>RV Owner</h4>

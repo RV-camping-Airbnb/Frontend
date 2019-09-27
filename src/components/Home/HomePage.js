@@ -1,8 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Hero from '../../images/Hero1.jpg'
+import Caravan from '../../images/caravanlogo.svg'
 import { Link } from 'react-router-dom';
+import { fadeIn, zoomIn } from 'react-animations'
 
+// Animations
+const zoomInAnimation = keyframes`${zoomIn}`;
+
+// Styling
 const MainContainer = styled.div` 
   background-image: url(${Hero});
   background-position: center;
@@ -25,14 +31,22 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   width: 90%;
   max-width: 500px;
-  height: 500px;
+  height: 650px;
   background-color: white;
   border: none;
   border-radius: 10px;
+  animation: 1s ${zoomInAnimation};
 `;
 
 const Content = styled.div`
   padding: 1% 5%;
+`;
+
+const Logo = styled.div`
+  background-image: url(${Caravan});
+  height: 150px;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const Header = styled.h1`
@@ -87,20 +101,14 @@ const BrowseButton = styled.button`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin: 5%;
-`;
-
 function HomePage() {
 
   return (
     <MainContainer>
       <ContentContainer>
-        <Content>
+        <Content> 
           <Header>HAVE A DESTINATION IN MIND?</Header>
+          <Logo />
           <Line />
           <Para>Search for a location.</Para>
         </Content>

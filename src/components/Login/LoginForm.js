@@ -173,9 +173,9 @@ export default withFormik({
       .required("Password is required"),
   }),
 
-  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+  handleSubmit(credentials, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/login', values)
+    .post('/login', credentials)
     .then(res => {
       setStatus(res.data)
       localStorage.setItem('token', JSON.stringify(res.data.token))

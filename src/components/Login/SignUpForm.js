@@ -214,9 +214,9 @@ export default withFormik({
       .required("Please select a member type.")
   }),
 
-  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+  handleSubmit(credentials, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/signup', values)
+    .post('/signup', credentials)
     .then(res => {
       setStatus(res.data)
       localStorage.setItem('token', res.data.token)
