@@ -101,7 +101,15 @@ const BrowseButton = styled.button`
   }
 `;
 
-function HomePage() {
+function HomePage(props) {
+
+  function handleCreateButton() {
+    props.history.push('/createlisting')
+  }
+
+  function handleListingButton() {
+    props.history.push('/listings')
+  }
 
   return (
     <MainContainer>
@@ -112,16 +120,12 @@ function HomePage() {
           <Line />
           <Para>Search for a location.</Para>
         </Content>
-        <CreateButton>
-          <Link to='/createlisting'>
-            Create Listing
-          </Link>
+        <CreateButton onClick={handleCreateButton}>
+          Create Listing
         </CreateButton>
         <h2> - OR - </h2>
-        <BrowseButton>
-          <Link to='/listings'>
+        <BrowseButton onclick={handleListingButton}>
            Browse Listings
-          </Link>
         </BrowseButton>
       </ContentContainer>
     </MainContainer>

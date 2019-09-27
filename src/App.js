@@ -76,7 +76,7 @@ function App() {
     <Navigation />
     <Switch>
       <PrivateRoute path='/profile' component={Profile} />
-      <Route exact path='/' component={HomePage} />
+      <Route exact path='/' render={props => <HomePage {...props} />} />
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
