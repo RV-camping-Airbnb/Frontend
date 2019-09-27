@@ -18,6 +18,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import SendIcon from '@material-ui/icons/Send';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import LockIcon from '@material-ui/icons/Lock';
 import RvHookupIcon from '@material-ui/icons/RvHookup';
 import RVNBIcon from '../../images/RVNBIcon.svg';
 
@@ -117,10 +118,11 @@ const drawerWidth = 240;
     },
   }));
 
-function Navigation() {
+function Navigation(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  console.log(props)
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -128,6 +130,10 @@ function Navigation() {
 
   function handleDrawerClose() {
     setOpen(false);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('token'); 
   }
 
   return (
@@ -263,6 +269,14 @@ function Navigation() {
                Login
              </ListItemText>
            </NavLink>
+         </ListItem>
+         <ListItem button onClick={handleLogout}>
+           <NavLink to='/login' className={classes.menuLink} onClick={handleDrawerClose}>
+            <LockIcon />
+            <ListItemText className={classes.menuText}>
+              Logout
+            </ListItemText>
+          </NavLink>
          </ListItem>
         </List>
       </Drawer>
