@@ -75,7 +75,6 @@ function App() {
   return (
     <>
     <Navigation />
-    
     <Switch>
       <PrivateRoute path='/profile' component={Profile} />
       <Route exact path='/' component={HomePage} />

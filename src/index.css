@@ -40,3 +40,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
+a:hover {
+  transform: scale(1.05);
+}

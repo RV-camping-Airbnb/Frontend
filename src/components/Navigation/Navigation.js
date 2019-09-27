@@ -83,7 +83,29 @@ const drawerWidth = 240;
       ['@media (max-width:400px)']: { 
         width: '150px',
       }
-    }
+    },
+    links: {
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      textDecoration: 'none',
+      width: '35%',
+      color: 'black',
+      fontSize: '1rem',
+      marginRight: '2%',
+      ['@media (max-width:1000px)']: { 
+        display: 'none',
+      },
+
+      '&:a': {
+        paddingRight: '2%',
+        marginRight: '2%',
+        cursor: 'pointer',
+        ['@media (max-width:1000px)']: { 
+          display: 'none',
+        },
+      },
+    },
   }));
 
 function Navigation() {
@@ -117,6 +139,17 @@ function Navigation() {
         })}
       >
         <div className={classes.drawerHeader}>
+        <div className={classes.links}>
+          <NavLink to='/'>
+            Home
+          </NavLink>
+          <NavLink to='/listings'>
+            Listings
+          </NavLink>
+          <NavLink to='/login'>
+            Login
+          </NavLink>
+        </div>
           <Toolbar className={classes.toolBar}>
             <IconButton 
               color="inherit"
