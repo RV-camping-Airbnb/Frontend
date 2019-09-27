@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -112,15 +112,6 @@ function Navigation() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsAuth(true)
-    } else {
-      setIsAuth(false)
-    }
-  }, [])
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -140,9 +131,9 @@ function Navigation() {
       >
         <div className={classes.drawerHeader}>
         <div className={classes.links}>
-          <NavLink to='/'>
+          <a href='https://rvnb-marketing.netlify.com/' target="_blank" rel="noopener noreferrer">
             Home
-          </NavLink>
+          </a>
           <NavLink to='/listings'>
             Listings
           </NavLink>
