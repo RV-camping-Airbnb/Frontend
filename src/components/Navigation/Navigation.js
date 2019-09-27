@@ -78,10 +78,19 @@ const drawerWidth = 240;
       marginLeft: '25px'
     },
     icon: {
+      display: 'flex',
       marginLeft: '3%',
       width: '200px',
       ['@media (max-width:400px)']: { 
         width: '150px',
+      },
+
+      '&:a': {
+        marginLeft: '3%',
+        width: '200px',
+        ['@media (max-width:400px)']: { 
+        width: '150px',
+        }
       }
     },
     links: {
@@ -123,7 +132,9 @@ function Navigation() {
 
   return (
     <div className={classes.root}>
-      <img className={classes.icon} src={RVNBIcon} alt='Icon' />
+      <NavLink to='/' className={classes.icon}>
+        <img className={classes.icon} src={RVNBIcon} alt='Icon' />
+      </NavLink>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
