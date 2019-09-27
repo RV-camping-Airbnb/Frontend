@@ -7,7 +7,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
-import { TwitterShareButton, TwitterIcon } from 'react-share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { TwitterShareButton, FacebookShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,6 +62,46 @@ const useStyles = makeStyles(theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: '100%',
+    margin: '1% 3%',
+    padding: '0 5%'
+  },
+  bookButton: {
+    color: '#fff',
+    backgroundColor: '#3f51b5',
+    width: '30%',
+    height: '45px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  
+    '&:hover': {
+      backgroundColor: '#052af7',
+      transform: 'scale(1.02)',
+    }
+  },
+  favoriteButton: {
+    color: '#fff',
+    backgroundColor: '#ff3366',
+    width: '30%',
+    height: '45px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  
+    '&:hover': {
+      backgroundColor: '#fc003f',
+      transform: 'scale(1.02)',
+    }
+  }
 }));
 
 const ListingCard = (props) => {
@@ -97,15 +138,23 @@ const ListingCard = (props) => {
                       {props.post.description}
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
-                    <div>
-                      <button aria-label="add to booked" onClick={() => props.bookListing(props.post)}>
+                    <div className={classes.buttons}>
+                      <button aria-label="add to booked" className={classes.bookButton} onClick={() => props.bookListing(props.post)}>
                         BOOK
                       </button>
                       <IconButton aria-label="share">
                         <TwitterShareButton url={shareURL}>
-                          <TwitterIcon size={32} round={true} />
+                          <TwitterIcon size={42} round={true} />
                         </TwitterShareButton>
                       </IconButton>
+                      <IconButton aria-label="share">
+                        <FacebookShareButton url={shareURL}>
+                          <FacebookIcon size={42} round={true} />
+                        </FacebookShareButton>
+                      </IconButton>
+                      <button aria-label="add to favorites" className={classes.favoriteButton} onClick={() => props.addToFavorites(props.post)}>
+                        FAVORITE
+                      </button>
                     </div>
                   </Box>
                 ) : (
