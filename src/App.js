@@ -93,10 +93,6 @@ function App() {
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/signup' component={SignUpForm} />
 
-      
-      <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
-      <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
-      <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />
     </Switch>
     </>
   );

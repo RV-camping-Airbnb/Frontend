@@ -220,7 +220,7 @@ function Navigation(props) {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/listingss' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Listings
@@ -232,14 +232,6 @@ function Navigation(props) {
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Create Listing
-              </ListItemText>
-            </NavLink>
-          </ListItem >
-          <ListItem button>
-            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
-              <ViewListIcon />
-              <ListItemText className={classes.menuText}>
-                Fake Posts
               </ListItemText>
             </NavLink>
           </ListItem >

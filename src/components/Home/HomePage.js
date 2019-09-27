@@ -123,7 +123,7 @@ function HomePage(props) {
           Create Listing
         </CreateButton>
         <h2> - OR - </h2>
-        <BrowseButton onclick={handleListingButton}>
+        <BrowseButton onClick={handleListingButton}>
            Browse Listings
         </BrowseButton>
       </ContentContainer>
