@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Hero from '../../images/Hero1.jpg'
 import Caravan from '../../images/caravanlogo.svg'
-import { fadeIn, zoomIn } from 'react-animations'
+import { zoomIn } from 'react-animations'
 
 // Animations
 const zoomInAnimation = keyframes`${zoomIn}`;

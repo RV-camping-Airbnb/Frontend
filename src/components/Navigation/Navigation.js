@@ -118,11 +118,10 @@ const drawerWidth = 240;
     },
   }));
 
-function Navigation(props) {
+function Navigation() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  console.log(props)
 
   function handleDrawerOpen() {
     setOpen(true);

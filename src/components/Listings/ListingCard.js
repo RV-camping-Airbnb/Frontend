@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const FakeListingCard = (props) => {
+const ListingCard = (props) => {
   const classes = useStyles();
   const shareURL = 'https://rvnb.netlify.com/'
   console.log(props)
@@ -98,7 +98,7 @@ const FakeListingCard = (props) => {
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <button aria-label="add to booked" onClick={() => props.addToBooked(props.post)}>
+                      <button aria-label="add to booked" onClick={() => props.bookListing(props.post)}>
                         BOOK
                       </button>
                       <IconButton aria-label="share">
@@ -122,4 +122,4 @@ const FakeListingCard = (props) => {
   );
 }
 
-export default FakeListingCard;
+export default ListingCard;

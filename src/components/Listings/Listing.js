@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithoutAuth as axios} from '../../utils/axiosutils';
-import FakeListingCard from './FakeListingCard';
+import ListingCard from './ListingCard';
+import LoadingOverlay from 'react-loading-overlay';
+import styled from 'styled-components';
 
-const FakeListing = (props) => {
+const Loading = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
+const Listing = (props) => {
   const [post, setPost] = useState();
   console.log(props.listing)
   console.log(props)
@@ -27,16 +34,21 @@ const FakeListing = (props) => {
     addToBookedList(post)
   }
 
+  let isActive = true;
+
   if (!post) {
-    return <div>Loading listing information...</div>;
-  }
+    return (
+    <LoadingOverlay
+    active={isActive}
+    spinner
+    text="Loading listings..."><Loading /></LoadingOverlay>
+    )}
 
   return (
     <div className="book-wrapper">
-      <FakeListingCard key={post.id} post={post} {...props} />
-      <div className="book-button" onClick={() => bookListing()}>Book</div>
+      <ListingCard key={post.post_id} post={post} {...props} bookListing={bookListing} />
     </div>
   );
 }
 
-export default FakeListing;
+export default Listing;
