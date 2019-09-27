@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';
+import ListingForm from './components/Listings/ListingForm';
 import LoginForm from './components/Login/LoginForm';
 import LogOut from './components/Login/LogOut';
 import ResetPassword from './components/Login/ResetPassword';
@@ -28,7 +29,7 @@ function App() {
 
   useEffect(() => {
     axios()
-      .get('/posts')
+      .get('/listings')
       .then(res => {
         console.log(res.data)
         setListing(res.data);
@@ -81,7 +82,7 @@ function App() {
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
-      {/* <Route path='/profile' component={Profile} /> */}
+      <Route path='/createlisting' component={ListingForm} />
       <Route path='/messenger' component={Messenger} />
       <Route path='/signup' component={SignUpForm} />
       <Route path='/listing' component={ListingForm} />
@@ -91,9 +92,8 @@ function App() {
       <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
-      <Route path='/posts/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
-      <Route path='/posts' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
-
+      <Route path='/listings/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
+      <Route path='/listings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
     </Switch>
     <SpeedDialer />
     </>

@@ -5,33 +5,55 @@ import BgImage from '../../images/bgImage.jpg';
 import RV3 from '../../images/rv3.jpg';
 
 const Background = styled.div` 
-  background-image: url(${BgImage});
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
+  height: 90vh;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Bio = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
   width: 25%;
-  height: 500px;
+  height: 90vh;
+  background-color: #3f51b5;
+  color: white;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+  }
 `;
 
-const BigAvatar = styled.img`
-    margin-top: -100px;
-    width: 70%;
-    height: 50%;
-    background-color: gray;
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+  margin-top: 5%;
+  padding: 5%;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  width: 100%;
+  margin-top: 1%;
+  @media (max-width: 768px) {
+    margin-top: 5%;
+  }
+`;
+
+const Avatar = styled.img`
+    width: 200px;
+    height: 200px;
     border: 2px solid black;
     border-radius: 100%;
     background-image: url(${RV3});
@@ -45,12 +67,16 @@ function Profile() {
   return (
     <Background>
       <Bio>
-        <BigAvatar />
-        <h1>Nick Durbin</h1>
-        <h3>Akron, Ohio</h3>
-        <h4>RV Owner</h4>
-        <h4>Land Owner</h4>
-        <Rating name="half-rating" value={4.5} precision={0.5} />
+        <ImageContainer>
+          <Avatar />
+        </ImageContainer>
+        <ContentContainer>
+          <h1>Nick Durbin</h1>
+          <h3>Akron, Ohio</h3>
+          <h4>RV Owner</h4>
+          <h4>Land Owner</h4>
+          <Rating name="half-rating" value={4.5} precision={0.5} />
+        </ContentContainer>
       </Bio>
     </Background>
   )

@@ -14,8 +14,8 @@ import Grid from '@material-ui/core/Grid';
 import LockIcon from '@material-ui/icons/Lock';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import RVFour from '../../images/rv4.jpg'
-import DatePicker from 'react-datepicker'
+import RVTwo from '../../images/rv2.jpg';
+import DatePicker from 'react-datepicker';
 
 class Thumb extends React.Component {
   state = {
@@ -53,7 +53,6 @@ class Thumb extends React.Component {
   }
 }
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -72,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: `url(${RVFour})`,
+    backgroundImage: `url(${RVTwo})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -122,7 +121,6 @@ function ListingForm({ values, isSubmitting }) {
             />
 
             {/* <input type="search" id="address-input" placeholder="Where is your land?" />
-
             <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
             <script>
               let placesAutocomplete = places({

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -78,24 +78,40 @@ const drawerWidth = 240;
       marginLeft: '25px'
     },
     icon: {
-      marginLeft: '1%'
-    }
+      marginLeft: '3%',
+      width: '200px',
+      ['@media (max-width:400px)']: { 
+        width: '150px',
+      }
+    },
+    links: {
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      textDecoration: 'none',
+      width: '35%',
+      color: 'black',
+      fontSize: '1rem',
+      marginRight: '2%',
+      ['@media (max-width:1000px)']: { 
+        display: 'none',
+      },
+
+      '&:a': {
+        paddingRight: '2%',
+        marginRight: '2%',
+        cursor: 'pointer',
+        ['@media (max-width:1000px)']: { 
+          display: 'none',
+        },
+      },
+    },
   }));
 
 function Navigation() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsAuth(true)
-    } else {
-      setIsAuth(false)
-    }
-
-  }, [])
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -114,6 +130,17 @@ function Navigation() {
         })}
       >
         <div className={classes.drawerHeader}>
+        <div className={classes.links}>
+          <a href='https://rvnb-marketing.netlify.com/' target="_blank" rel="noopener noreferrer">
+            Home
+          </a>
+          <NavLink to='/listings'>
+            Listings
+          </NavLink>
+          <NavLink to='/login'>
+            Login
+          </NavLink>
+        </div>
           <Toolbar className={classes.toolBar}>
             <IconButton 
               color="inherit"
@@ -176,7 +203,7 @@ function Navigation() {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/listingss' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Listings
@@ -184,7 +211,15 @@ function Navigation() {
             </NavLink>
           </ListItem >
           <ListItem button>
-            <NavLink to='/posts' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/createlisting' className={classes.menuLink} onClick={handleDrawerClose}>
+              <ViewListIcon />
+              <ListItemText className={classes.menuText}>
+                Create Listing
+              </ListItemText>
+            </NavLink>
+          </ListItem >
+          <ListItem button>
+            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Fake Posts

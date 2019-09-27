@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 
 export const CTX = React.createContext()
 
-const intialState = {
+const initialState = {
   Gary: [
     {from: 'Gary', msg: 'Is your property available?'},
     {from: 'Gary', msg: 'Is it okay to arrive around 4PM?'},
@@ -37,7 +37,7 @@ let socket;
 
 export default function Store(props) {
 
-  const [allChats, dispatch] = useReducer(reducer, intialState)
+  const [allChats, dispatch] = useReducer(reducer, initialState)
 
   if (!socket) {
     socket = io(':3001');

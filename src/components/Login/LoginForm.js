@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 function LoginForm(props) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
+  const [credentials, setCredentials] = useState({});
 
   console.log(props.status)
 
@@ -69,6 +70,13 @@ function LoginForm(props) {
       forwardUser();
     }
   }, [props.status, users])
+
+  const handleChange = e => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -86,6 +94,8 @@ function LoginForm(props) {
             <Field
               type="email"
               name="email"
+              value={credentials.email}
+              onChange={handleChange}
               component={TextField}
               variant="outlined"
               margin="normal"
@@ -98,6 +108,8 @@ function LoginForm(props) {
             <Field
               name="password"
               type="password"
+              value={credentials.password}
+              onChange={handleChange}
               label="Password"
               component={TextField}
               variant="outlined"
@@ -161,9 +173,9 @@ export default withFormik({
       .required("Password is required"),
   }),
 
-  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+  handleSubmit(credentials, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/login', values)
+    .post('/login', credentials)
     .then(res => {
       setStatus(res.data)
       localStorage.setItem('token', JSON.stringify(res.data.token))

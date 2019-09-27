@@ -64,6 +64,7 @@ const useStyles = makeStyles(theme => ({
 function SignUpForm(props) {
   const [users, setUsers] = useState([])
   const classes = useStyles();
+  const [credentials, setCredentials] = useState({});
 
   console.log(props.status)
 
@@ -76,6 +77,13 @@ function SignUpForm(props) {
     }
     console.log(users)
   }, [props.status, users])
+
+  const handleChange = e => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -114,6 +122,8 @@ function SignUpForm(props) {
             <Field
               type="email"
               name="email"
+              value={credentials.email}
+              onChange={handleChange}
               component={TextField}
               id="email"
               label="Email Address"
@@ -123,20 +133,11 @@ function SignUpForm(props) {
               fullWidth
               autoComplete="email"
             />
-             <Field 
-              type="text" 
-              name="username" 
-              label="Username"
-              component={TextField}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-            />
             <Field
               name="password"
               type="password"
+              value={credentials.password}
+              onChange={handleChange}
               component={TextField}
               variant="outlined"
               margin="normal"
@@ -185,13 +186,12 @@ function SignUpForm(props) {
 }
 
 export default withFormik({
-  mapPropsToValues({ first_name, last_name, email, username, password, member }) {
+  mapPropsToValues({ first_name, last_name, email, password, member }) {
     
     return {
       first_name: first_name || "",
       last_name: last_name || "",
       email: email || "",
-      username: username || "",
       password: password || "",
       member: member || ""
     };
@@ -207,9 +207,6 @@ export default withFormik({
     email: Yup.string()
       .email("Email not valid")
       .required("Email is required"),
-    username: Yup.string()
-      .min(3,"Username is not valid")
-      .required("Username is required"),
     password: Yup.string()
       .min(8, "Password must be 8 characters or longer")
       .required("Password is required"),
@@ -217,9 +214,9 @@ export default withFormik({
       .required("Please select a member type.")
   }),
 
-  handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+  handleSubmit(credentials, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/register', values)
+    .post('/signup', credentials)
     .then(res => {
       setStatus(res.data)
       localStorage.setItem('token', res.data.token)
