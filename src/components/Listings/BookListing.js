@@ -77,7 +77,7 @@ const BookListing = (props) => {
              
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
-                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.img} />
+                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
                 ) : (
                   <Skeleton variant="rect" width={220} height={120} />
                 )}
