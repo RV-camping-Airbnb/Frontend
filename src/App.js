@@ -23,6 +23,7 @@ function App() {
   const [favoriteList, setFavoriteList] = useState(listings);
   const [booked, setBooked] = useState(false);
   const [bookedList, setBookedList] = useState(data);
+  console.log(listings, data)
 
   useEffect(() => {
     axios()
@@ -73,25 +74,26 @@ function App() {
     <>
     <Navigation />
     <Switch>
-      // Private Routing Links
+  
+
       <PrivateRoute path='/profile' component={Profile} />
-      <PrivateRoute path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
-      <PrivateRoute path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
+      <PrivateRoute path='/favorites' render={props => <Favorites listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
+      <PrivateRoute path='/booking' render={props => <BookListing listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       <PrivateRoute path='/messenger' component={Messenger} />
       <PrivateRoute path='/createlisting' component={ListingForm} />
       
-      // Regular Routing
+
       <Route exact path='/' render={props => <HomePage {...props} />} />
       <Route path='/listings/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
       <Route path='/listings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
       
-      // Login Routing
+      
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/signup' component={SignUpForm} />
 
-      // Routing for Testing
+      
       <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
       <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
       <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />

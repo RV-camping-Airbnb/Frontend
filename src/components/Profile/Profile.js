@@ -64,7 +64,7 @@ const Avatar = styled.img`
     background-position: center;
 `;
 
-function Profile() {
+function Profile(props) {
 
   return (
     <Background>
