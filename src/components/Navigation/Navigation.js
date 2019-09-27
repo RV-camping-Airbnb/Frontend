@@ -131,12 +131,12 @@ function Navigation() {
       >
         <div className={classes.drawerHeader}>
         <div className={classes.links}>
-          <a href='https://rvnb-marketing.netlify.com/' target="_blank" rel="noopener noreferrer">
+          <NavLink to='/'>
             Home
-          </a>
-          <NavLink to='/listings'>
-            Listings
           </NavLink>
+          <a href='https://rvnb-marketing.netlify.com/' target="_blank" rel="noopener noreferrer">
+            Marketing
+          </a>
           <NavLink to='/login'>
             Login
           </NavLink>
