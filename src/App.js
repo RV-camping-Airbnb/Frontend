@@ -8,7 +8,6 @@ import LoginForm from './components/Login/LoginForm';
 import LogOut from './components/Login/LogOut';
 import ResetPassword from './components/Login/ResetPassword';
 import SignUpForm from './components/Login/SignUpForm';
-import ListingForm from './components/Listings/ListingForm';
 import Favorites from './components/Profile/Favorites';
 import BookListing from './components/Listings/BookListing';
 import Profile from './components/Profile/Profile';
@@ -39,7 +38,6 @@ function App() {
       });
   }, [])
   
-
   const addToFavoritesList = listing => {
     const updatedList = (favoriteList.includes(el => el.id === listing.id))
     console.log(updatedList)
