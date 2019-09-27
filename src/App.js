@@ -21,7 +21,6 @@ import { data, listings } from './components/Profile/Data';
 
 function App() {
   const [listing, setListing] = useState([]);
-  console.log(listing, "I am in App.js")
   const [favoriteList, setFavoriteList] = useState(listings);
   const [booked, setBooked] = useState(false);
   const [bookedList, setBookedList] = useState(data);
@@ -84,7 +83,7 @@ function App() {
       <Route path='/messenger' component={Messenger} />
       <Route path='/signup' component={SignUpForm} />
       <Route path='/listing' component={ListingForm} />
-      <Route path='/favorites' render={props => <Favorites {...props} listing={listing} /> } />
+      <Route path='/favorites' render={props => <Favorites {...props} favoriteList={favoriteList} deleteFavorite={deleteFavorite} /> } />
       <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
       <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
       <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />
