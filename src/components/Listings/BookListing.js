@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ShareIcon from '@material-ui/icons/Share';
+import { TwitterShareButton, TwitterIcon } from 'react-share';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,6 +63,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const shareURL = 'https://rvnb.netlify.com/'
+
 const BookListing = (props) => {
   const classes = useStyles();
   console.log(props.bookedList)
@@ -84,7 +86,7 @@ const BookListing = (props) => {
 
                 {item ? (
                   <Box paddingRight={2} className={classes.favContent}>
-                      <Typography gutterBottom variant="body2">
+                    <Typography gutterBottom variant="body2">
                       {item.title}
                     </Typography>
                     <Typography display="block" variant="caption" color="textSecondary">
@@ -102,7 +104,9 @@ const BookListing = (props) => {
                         <DeleteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
-                        <ShareIcon />
+                        <TwitterShareButton url={shareURL}>
+                          <TwitterIcon size={32} round={true} />
+                        </TwitterShareButton>
                       </IconButton>
                     </div>
                   </Box>

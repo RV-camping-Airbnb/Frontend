@@ -14,7 +14,6 @@ import Profile from './components/Profile/Profile';
 import FakeListingList from './components/Listings/FakeListingList';
 import FakeListing from './components/Listings/FakeListing';
 import Messenger from './components/Profile/Messenger';
-import SpeedDialer from './components/Navigation/SpeedDialer';
 import { axiosWithoutAuth as axios } from './utils/axiosutils';
 import { data, listings } from './components/Profile/Data';
 
@@ -74,25 +73,29 @@ function App() {
     <>
     <Navigation />
     <Switch>
+      // Private Routing Links
       <PrivateRoute path='/profile' component={Profile} />
+      <PrivateRoute path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
+      <PrivateRoute path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
+      <PrivateRoute path='/messenger' component={Messenger} />
+      <PrivateRoute path='/createlisting' component={ListingForm} />
+      
+      // Regular Routing
       <Route exact path='/' render={props => <HomePage {...props} />} />
-      <Route path='/reset-password' component={ResetPassword} />
+      <Route path='/listings/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
+      <Route path='/listings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
+      
+      // Login Routing
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
-      <Route path='/createlisting' component={ListingForm} />
-      <Route path='/messenger' component={Messenger} />
+      <Route path='/reset-password' component={ResetPassword} />
       <Route path='/signup' component={SignUpForm} />
-      <Route path='/listing' component={ListingForm} />
-      <Route path='/favorites' render={props => <Favorites {...props} favoriteList={favoriteList} deleteFavorite={deleteFavorite} /> } />
+
+      // Routing for Testing
       <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
       <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
       <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />
-      <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
-      <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
-      <Route path='/listings/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
-      <Route path='/listings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
     </Switch>
-    <SpeedDialer />
     </>
   );
 }

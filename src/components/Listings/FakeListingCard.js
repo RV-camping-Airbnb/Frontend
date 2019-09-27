@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
-import ShareIcon from '@material-ui/icons/Share';
+import { TwitterShareButton, TwitterIcon } from 'react-share';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,6 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 const FakeListingCard = (props) => {
   const classes = useStyles();
+  const shareURL = 'https://rvnb.netlify.com/'
   console.log(props)
   console.log(props.post)
   
@@ -101,7 +102,9 @@ const FakeListingCard = (props) => {
                         BOOK
                       </button>
                       <IconButton aria-label="share">
-                        <ShareIcon />
+                        <TwitterShareButton url={shareURL}>
+                          <TwitterIcon size={32} round={true} />
+                        </TwitterShareButton>
                       </IconButton>
                     </div>
                   </Box>

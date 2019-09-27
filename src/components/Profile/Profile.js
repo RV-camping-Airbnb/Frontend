@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Rating from '@material-ui/lab/Rating';
 import BgImage from '../../images/bgImage.jpg';
 import RV3 from '../../images/rv3.jpg';
+import BookListing from '../Listings/BookListing';
+import Favorites from './Favorites';
 
 const Background = styled.div` 
   display: flex;
@@ -78,6 +80,8 @@ function Profile() {
           <Rating name="half-rating" value={4.5} precision={0.5} />
         </ContentContainer>
       </Bio>
+      <Favorites />
+      <BookListing />
     </Background>
   )
 }

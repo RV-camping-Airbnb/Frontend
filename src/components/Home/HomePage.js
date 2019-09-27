@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Hero from '../../images/Hero1.jpg'
 import Caravan from '../../images/caravanlogo.svg'
-import { Link } from 'react-router-dom';
 import { fadeIn, zoomIn } from 'react-animations'
 
 // Animations

@@ -5,15 +5,13 @@ import { capitalize } from '@material-ui/core/utils';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+   width: '100%'
   },
   radioGroup: {
     margin: theme.spacing(1, 0),
@@ -21,18 +19,19 @@ const useStyles = makeStyles(theme => ({
   speedDial: {
     position: 'fixed',
     '&$directionLeft': {
-      bottom: theme.spacing(2),
-      right: theme.spacing(3),
+      bottom: theme.spacing(1),
+      right: theme.spacing(1),
     },
   },
   directionLeft: {},
 }));
 
+const shareURL = 'https://rvnb.netlify.com/'
+
 const actions = [
-  { icon: <FileCopyIcon />, name: 'Copy' },
-  { icon: <SaveIcon />, name: 'Save' },
-  { icon: <PrintIcon />, name: 'Print' },
-  { icon: <ShareIcon />, name: 'Share' },
+  { icon: <FacebookShareButton url={shareURL}> <FacebookIcon size={32} round={true} /> </FacebookShareButton>, name: 'Share' },
+  { icon: <TwitterShareButton url={shareURL}> <TwitterIcon size={32} round={true} /> </TwitterShareButton>, name: 'Share' },
+  { icon: <FavoriteIcon />, name: 'Favorite' },
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
