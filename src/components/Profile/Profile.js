@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Rating from '@material-ui/lab/Rating';
-import BgImage from '../../images/bgImage.jpg';
 import RV3 from '../../images/rv3.jpg';
 
 const Background = styled.div` 
@@ -62,7 +61,7 @@ const Avatar = styled.img`
     background-position: center;
 `;
 
-function Profile() {
+function Profile(props) {
 
   return (
     <Background>

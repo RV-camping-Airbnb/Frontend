@@ -2,8 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Hero from '../../images/Hero1.jpg'
 import Caravan from '../../images/caravanlogo.svg'
-import { Link } from 'react-router-dom';
-import { fadeIn, zoomIn } from 'react-animations'
+import { zoomIn } from 'react-animations'
 
 // Animations
 const zoomInAnimation = keyframes`${zoomIn}`;
@@ -31,7 +30,7 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   width: 90%;
   max-width: 500px;
-  height: 650px;
+  height: 600px;
   background-color: white;
   border: none;
   border-radius: 10px;
@@ -124,7 +123,7 @@ function HomePage(props) {
           Create Listing
         </CreateButton>
         <h2> - OR - </h2>
-        <BrowseButton onclick={handleListingButton}>
+        <BrowseButton onClick={handleListingButton}>
            Browse Listings
         </BrowseButton>
       </ContentContainer>

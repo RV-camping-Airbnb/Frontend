@@ -20,7 +20,7 @@ import SendIcon from '@material-ui/icons/Send';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
 import RvHookupIcon from '@material-ui/icons/RvHookup';
-import RVNBIcon from '../../images/RVNBIcon.svg';
+import RVNB from '../../images/Rv_logo.svg';
 
 const drawerWidth = 240;
 
@@ -81,14 +81,14 @@ const drawerWidth = 240;
     icon: {
       display: 'flex',
       marginLeft: '3%',
-      width: '200px',
+      width: '150px',
       ['@media (max-width:400px)']: { 
         width: '150px',
       },
 
       '&:a': {
         marginLeft: '3%',
-        width: '200px',
+        width: '150px',
         ['@media (max-width:400px)']: { 
         width: '150px',
         }
@@ -118,11 +118,10 @@ const drawerWidth = 240;
     },
   }));
 
-function Navigation(props) {
+function Navigation() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  console.log(props)
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -139,7 +138,7 @@ function Navigation(props) {
   return (
     <div className={classes.root}>
       <NavLink to='/' className={classes.icon}>
-        <img className={classes.icon} src={RVNBIcon} alt='Icon' />
+        <img className={classes.icon} src={RVNB} alt='Icon' />
       </NavLink>
       <main
         className={clsx(classes.content, {
@@ -220,7 +219,7 @@ function Navigation(props) {
             </NavLink>
           </ListItem>
           <ListItem button>
-            <NavLink to='/listingss' className={classes.menuLink} onClick={handleDrawerClose}>
+            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Listings
@@ -232,14 +231,6 @@ function Navigation(props) {
               <ViewListIcon />
               <ListItemText className={classes.menuText}>
                 Create Listing
-              </ListItemText>
-            </NavLink>
-          </ListItem >
-          <ListItem button>
-            <NavLink to='/listings' className={classes.menuLink} onClick={handleDrawerClose}>
-              <ViewListIcon />
-              <ListItemText className={classes.menuText}>
-                Fake Posts
               </ListItemText>
             </NavLink>
           </ListItem >
