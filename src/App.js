@@ -14,6 +14,7 @@ import Profile from './components/Profile/Profile';
 import ListingList from './components/Listings/ListingList';
 import Listing from './components/Listings/Listing';
 import Messenger from './components/Profile/Messenger';
+import SpeedDialer from './components/Navigation/SpeedDialer';
 import { axiosWithoutAuth as axios } from './utils/axiosutils';
 import { data, listings } from './components/Profile/Data';
 
@@ -23,13 +24,13 @@ function App() {
   const [favoriteList, setFavoriteList] = useState(listings);
   const [booked, setBooked] = useState(false);
   const [bookedList, setBookedList] = useState(data);
-  console.log(listings, data)
+  console.log(listings, data, "I am in App.js")
 
   useEffect(() => {
     axios()
       .get('/posts')
       .then(res => {
-        console.log(res.data)
+        console.log(res.data, "I am the data in the axios call in App.js")
         setListing(res.data);
       })
       .catch(err => {
@@ -41,18 +42,13 @@ function App() {
     const updatedList = (favoriteList.includes(el => el.id === listing.id))
     console.log(updatedList)
 
-    if (!updatedList.isFavorited) {
-      listing.isFavorited = true;
+    if (!updatedList) {
       setFavoriteList( [...favoriteList, listing] );
-    } else {
-      listing.isFavorited = false;
-      setFavoriteList( [...favoriteList, listing] );
-    } 
+    }
   }
 
   const deleteFavorite = (id) => {
     const updatedList = favoriteList.filter((listing) => listing.id !== id)
-    listing.isFavorited = false;
     setFavoriteList(updatedList)
   }
 
@@ -61,13 +57,16 @@ function App() {
   }
 
   const addToBookedList = listing => {
-    setBookedList([...bookedList, listing])
-    addToBooked()
+    const updatedBookedList = (bookedList.includes(el => el.id === listing.id))
+
+    if (!updatedBookedList) {
+      setBookedList([...bookedList, listing])
+    }
   }
 
   const deleteBooked = (id) => {
-    const updatedList = bookedList.filter((listing) => listing.id !== id)
-    setBookedList(updatedList)
+    const updatedBookedList = bookedList.filter((listing) => listing.id !== id)
+    setBookedList(updatedBookedList)
   }
 
   return (
@@ -79,13 +78,13 @@ function App() {
       <PrivateRoute path='/profile' component={Profile} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
-      <PrivateRoute path='/messenger' component={Messenger} />
+      <Route path='/messenger' component={Messenger} />
       <PrivateRoute path='/createlisting' component={ListingForm} />
       
 
       <Route exact path='/' render={props => <HomePage {...props} />} />
-      <Route path='/listings/:id' render={props => <Listing {...props} listing={listing} setListing={setListing} booked={booked} />} />
-      <Route path='/listings' render={props => <ListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
+      <Route path='/listings/:id' render={props => <Listing {...props} listing={listing} setListing={setListing} bookedList={bookedList} addToBookedList={addToBookedList} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite} />} />
+      <Route path='/listings' render={props => <ListingList {...props} listing={listing} addToBookedList={addToBookedList} bookedList={bookedList} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite} /> } />
       
       
       <Route path='/login' render={props => <LoginForm {...props} /> } />
@@ -94,6 +93,7 @@ function App() {
       <Route path='/signup' component={SignUpForm} />
 
     </Switch>
+    <SpeedDialer />
     </>
   );
 }

@@ -216,7 +216,7 @@ export default withFormik({
 
   handleSubmit(credentials, { resetForm, setSubmitting, setStatus }) {
     axios()
-    .post('/signup', credentials)
+    .post('/register', credentials)
     .then(res => {
       setStatus(res.data)
       localStorage.setItem('token', res.data.token)

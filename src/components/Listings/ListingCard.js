@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     margin: '0 auto',
-    width: '80%',
-    height: '500px',
+    width: '50%',
+    height: '400px',
     backgroundColor: 'white',
     padding: theme.spacing(3, 2),
   },
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     margin: '1% auto 0',
-    width: '80%',
+    width: '50%',
     padding: '1%'
   },
   grid: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     margin: '0 auto',
-    width: '80%',
+    width: '50%',
     padding: '0 1%',
     cursor: 'pointer',
   },
@@ -107,67 +107,72 @@ const useStyles = makeStyles(theme => ({
 const ListingCard = (props) => {
   const classes = useStyles();
   const shareURL = 'https://rvnb.netlify.com/'
-  console.log(props)
-  console.log(props.post)
+  console.log(props.post, "I am in ListingCard.js")
+
+  const bookListing = () => {
+    const addToBookedList = props.addToBookedList;
+    addToBookedList(props.post)
+  }
+
+  const favoriteListing = () => {
+    const addToFavoritesList = props.addToFavoritesList;
+    addToFavoritesList(props.post)
+  }
   
   return (
-      <div>
-        <div>
-          <Paper className={classes.example}>
-            <h1 className={classes.heading}>Listing:</h1>
-            <Grid container wrap="wrap" className={classes.grid}>
-              <Box key={props.post.id} className={classes.favContent}>
-                {props.post ? (
-                  <img className={classes.image} alt={props.post.title} src={props.post.img} />
-                ) : (
-                  <Skeleton variant="rect" width={220} height={120} />
-                )}
+    <Paper>
+      <Grid container wrap="wrap" className={classes.grid}>
+      <h1 className={classes.heading}>Listing:</h1>
+        <Box key={props.post.id} className={classes.favContent}>
+          {props.post ? (
+            <img className={classes.image} alt={props.post.title} src={props.post.img} />
+          ) : (
+            <Skeleton variant="rect" width={220} height={120} />
+          )}
 
-                {props.post ? (
-                  <Box paddingRight={2} className={classes.favContent}>
-                    <Typography gutterBottom variant="body2">
-                      {props.post.title}
-                    </Typography>
-                    <Typography display="block" variant="caption" color="textSecondary">
-                      {props.post.address}
-                    </Typography>
-                    <Typography variant="caption" color="textSecondary">
-                      {`${props.post.state} • ${props.post.price}`}
-                    </Typography>
-                    <Typography variant="caption" color="textSecondary">
-                      {props.post.description}
-                    </Typography>
-                    <Rating name="half-rating" value={4.5} precision={0.5} />
-                    <div className={classes.buttons}>
-                      <button aria-label="add to booked" className={classes.bookButton} onClick={() => props.bookListing(props.post)}>
-                        BOOK
-                      </button>
-                      <IconButton aria-label="share">
-                        <TwitterShareButton url={shareURL}>
-                          <TwitterIcon size={42} round={true} />
-                        </TwitterShareButton>
-                      </IconButton>
-                      <IconButton aria-label="share">
-                        <FacebookShareButton url={shareURL}>
-                          <FacebookIcon size={42} round={true} />
-                        </FacebookShareButton>
-                      </IconButton>
-                      <button aria-label="add to favorites" className={classes.favoriteButton} onClick={() => props.addToFavorites(props.post)}>
-                        FAVORITE
-                      </button>
-                    </div>
-                  </Box>
-                ) : (
-                  <React.Fragment>
-                    <Skeleton />
-                    <Skeleton width="60%" />
-                  </React.Fragment>
-                )}
-              </Box>
-            </Grid>
-          </Paper>
-        </div>
-    </div>
+          {props.post ? (
+            <Box paddingRight={2} className={classes.favContent}>
+              <Typography gutterBottom variant="body2">
+                {props.post.title}
+              </Typography>
+              <Typography display="block" variant="caption" color="textSecondary">
+                {props.post.address}
+              </Typography>
+              <Typography variant="caption" color="textSecondary">
+                {`${props.post.state} • ${props.post.price}`}
+              </Typography>
+              <Typography variant="caption" color="textSecondary">
+                {props.post.description}
+              </Typography>
+              <Rating name="half-rating" value={4.5} precision={0.5} />
+              <div className={classes.buttons}>
+                <button aria-label="add to booked" className={classes.bookButton} onClick={() => bookListing()}>
+                  BOOK
+                </button>
+                <IconButton aria-label="share">
+                  <TwitterShareButton url={shareURL}>
+                    <TwitterIcon size={42} round={true} />
+                  </TwitterShareButton>
+                </IconButton>
+                <IconButton aria-label="share">
+                  <FacebookShareButton url={shareURL}>
+                    <FacebookIcon size={42} round={true} />
+                  </FacebookShareButton>
+                </IconButton>
+                <button aria-label="add to favorites" className={classes.favoriteButton} onClick={() => favoriteListing()}>
+                  FAVORITE
+                </button>
+              </div>
+            </Box>
+          ) : (
+            <React.Fragment>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </React.Fragment>
+          )}
+        </Box>
+      </Grid>
+    </Paper>
   );
 }
 

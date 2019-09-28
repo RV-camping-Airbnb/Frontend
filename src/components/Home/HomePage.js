@@ -30,7 +30,7 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   width: 90%;
   max-width: 500px;
-  height: 650px;
+  height: 600px;
   background-color: white;
   border: none;
   border-radius: 10px;

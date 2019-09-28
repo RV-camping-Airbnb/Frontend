@@ -67,7 +67,7 @@ const shareURL = 'https://rvnb.netlify.com/'
 
 const BookListing = (props) => {
   const classes = useStyles();
-  console.log(props.bookedList)
+  console.log(props.bookedList, 'I am in BookListing.js')
   
   return (
     <div className="saved-list">

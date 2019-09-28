@@ -33,11 +33,6 @@ const Listing = (props) => {
 
   },[props.match.params.id]);
   
-  const bookListing = () => {
-    const addToBookedList = props.addToBookedList;
-    addToBookedList(post)
-  }
-
   let isActive = true;
 
   if (!post) {
@@ -50,7 +45,7 @@ const Listing = (props) => {
 
   return (
     <div className="book-wrapper">
-      <ListingCard key={post.post_id} post={post} {...props} bookListing={bookListing} />
+      <ListingCard key={post.post_id} post={post} {...props} />
     </div>
   );
 }
