@@ -17,6 +17,7 @@ import Messenger from './components/Profile/Messenger';
 import SpeedDialer from './components/Navigation/SpeedDialer';
 import { axiosWithoutAuth as axios } from './utils/axiosutils';
 import { data, listings } from './components/Profile/Data';
+import StripePayment from './components/Payments/StripePayment';
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       <Route path='/messenger' component={Messenger} />
       <PrivateRoute path='/createlisting' component={ListingForm} />
+      <Route path='/checkout' render={props => <StripePayment {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       
 
       <Route exact path='/' render={props => <HomePage {...props} />} />
