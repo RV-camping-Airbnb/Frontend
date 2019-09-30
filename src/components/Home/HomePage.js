@@ -117,7 +117,7 @@ function HomePage(props) {
           <Header>HAVE A DESTINATION IN MIND?</Header>
           <Logo />
           <Line />
-          {/* <Para>Search for a location.</Para> */}
+          <Para>Search for a location.</Para>
         </Content>
         <CreateButton onClick={handleCreateButton}>
           Create Listing
