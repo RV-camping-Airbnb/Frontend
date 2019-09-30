@@ -58,4 +58,4 @@ app.post("/checkout", async (req, res) => {
   res.json({ error, status });
 });
 
-app.listen(8080);
+app.listen(3000);

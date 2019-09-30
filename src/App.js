@@ -76,11 +76,11 @@ function App() {
     <Switch>
   
 
-      <PrivateRoute path='/profile' component={Profile} />
+      <Route path='/profile' component={Profile} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       <Route path='/messenger' component={Messenger} />
-      <PrivateRoute path='/createlisting' component={ListingForm} />
+      <Route path='/createlisting' component={ListingForm} />
       <Route path='/checkout' render={props => <StripePayment {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       
 
