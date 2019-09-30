@@ -75,29 +75,35 @@ const Favorites = (props) => {
             <h1 className={classes.heading}>Search by location:</h1>
             <input label='Search by location' icon="search" onChange={onchange} />
             <Grid container wrap="wrap" className={classes.grid}>
-            {props.favoriteList.map((item, index) => (
+            {props.favoriteList.map((post, index) => (
              
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
-                {item ? (
-                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
+                {post ? (
+                  <img style={{ width: 220, height: 140 }} alt={post.title} src={post.img} />
                 ) : (
                   <Skeleton variant="rect" width={220} height={120} />
                 )}
 
-                {item ? (
+                {post ? (
                   <Box paddingRight={2} className={classes.favContent}>
                     <Typography gutterBottom variant="body2">
-                      {item.title}
+                      {post.title}
                     </Typography>
                     <Typography display="block" variant="caption" color="textSecondary">
-                      {item.location}
+                      {post.address}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                      {`${item.views} • ${item.createdAt}`}
+                      {`${post.price} per night`}
                     </Typography>
+                    <Typography variant="caption" color="textSecondary">
+                      {`Available from ${post.start_date} to ${post.end_date}`}
+                    </Typography> 
                     <Rating name="half-rating" value={4.5} precision={0.5} />
+                    <Typography variant="caption" color="textSecondary">
+                     {post.description}
+                    </Typography>
                     <div>
-                      <IconButton onClick={() => props.deleteFavorite(item.id)}>
+                      <IconButton onClick={() => props.deleteFavorite(post.id)}>
                         <DeleteIcon />
                       </IconButton>
                       <IconButton aria-label="share">
