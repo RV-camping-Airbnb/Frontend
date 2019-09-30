@@ -122,6 +122,7 @@ const ListingCard = (props) => {
   const bookListing = () => {
     const addToBookedList = props.addToBookedList;
     addToBookedList(props.post)
+    console.log('Added to bookedList!')
   }
 
   const favoriteListing = () => {
@@ -132,7 +133,7 @@ const ListingCard = (props) => {
   return (
     <>
       <Grid container wrap="wrap" className={classes.grid}>
-      <h1 className={classes.heading}>Listing:</h1>
+      <h1 className={classes.heading}>Listing: {props.post.address}</h1>
         <Box key={props.post.id} className={classes.imgContent}>
           {props.post ? (
             <img className={classes.image} alt={props.post.title} src={props.post.img} />

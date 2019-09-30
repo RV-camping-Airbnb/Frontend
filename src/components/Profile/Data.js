@@ -1,7 +1,7 @@
 export const data = [
   {
     id: 1,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 6',
     location: 'San Jose, CA',
     views: '396 k views',
@@ -11,7 +11,7 @@ export const data = [
   },
   {
     id: 2,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 7',
     location: 'Paris, France',
     views: '2.1 M views',
@@ -21,7 +21,7 @@ export const data = [
   },
   {
     id: 3,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 8',
     location: 'Tampa, FL',
     views: '130 M views',
@@ -31,7 +31,7 @@ export const data = [
   },
   {
     id: 4,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 9',
     location: 'Lake Tahoe, CA',
     views: '112 k views',
@@ -41,7 +41,7 @@ export const data = [
   },
   {
     id: 5,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 10',
     location: 'Dallas, TX',
     views: '112 views',
@@ -54,7 +54,7 @@ export const data = [
 export const listings = [
   {
     id: 6,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 1',
     location: 'San Jose, CA',
     views: '396 k views',
@@ -63,7 +63,7 @@ export const listings = [
   },
   {
     id: 7,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 2',
     location: 'Paris, France',
     views: '2.1 M views',
@@ -72,7 +72,7 @@ export const listings = [
   },
   {
     id: 8,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 3',
     location: 'Tampa, FL',
     views: '130 M views',
@@ -81,7 +81,7 @@ export const listings = [
   },
   {
     id: 9,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 4',
     location: 'Lake Tahoe, CA',
     views: '112 k views',
@@ -90,7 +90,7 @@ export const listings = [
   },
   {
     id: 10,
-    src: 'https://source.unsplash.com/random',
+    src: 'https://source.unsplash.com/random/?mountain,beach,vacation,rv',
     title: 'Property 5',
     location: 'Dallas, TX',
     views: '112 views',

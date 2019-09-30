@@ -208,58 +208,6 @@ function ListingForm({ values, isSubmitting }) {
                 autoComplete="img"
               />
 
-          
-
-            {/* <form>Start Date: 
-              <input type='date' name='Start Date'></input>
-            </form>
-
-            <form>End Date: 
-              <input type='date' name='End Date'></input>
-            </form> */}
-
-            {/* () => {
-              const [start_date, setstart_date] = useState(new Date());
-              return (
-                <DatePicker selected={start_date} onChange={date => setstart_date(date)} />
-              );
-            }; */}
-
-            {/* <div className="container">
-              <Formik 
-                initialValues={{ file: null }}
-                onSubmit={(values) => {
-                  alert(
-                    JSON.stringify(
-                      { 
-                        fileName: values.file.name, 
-                        type: values.file.type,
-                        size: `${values.file.size} bytes`
-                      },
-                      null,
-                      2
-                    )
-                  );
-                }} 
-                validationSchema={Yup.object().shape({
-                  file: Yup.mixed().required(),
-                })}
-                render={({ values, handleSubmit, setFieldValue }) => {
-                  return (
-                    <form onSubmit={handleSubmit}>
-                      <div className="form-group">
-                        <label for="file">Upload a picture of your land: </label>
-                        <input id="file" name="file" type="file" onChange={(event) => {
-                          setFieldValue("file", event.currentTarget.files[0]);
-                        }} className="form-control" />
-                        <Thumb file={values.file} />
-                      </div>
-                      <button type="submit" className="btn btn-primary">submit</button>
-                    </form>
-                  );
-                }} />
-            </div> */}
-
             <Button 
               disabled={isSubmitting}
               type="submit"
