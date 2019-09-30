@@ -11,18 +11,19 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     margin: '5% auto',
-    width: '40%',
+    width: '90%',
+    maxWidth: '500px',
     height: '500px',
     padding: '1%'
   },
   content: {
-    padding: '1% 20%'
+    padding: '1% 5%'
   },
   header: {
-    margin: '1% auto',
-    fontSize: '3rem',
+    width: '100%',
+    margin: '0 auto',
+    fontSize: '2.5rem',
     textAlign: 'center',
-    
   },
   line: {
     width: '10%',
