@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
@@ -7,8 +7,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { TwitterShareButton, TwitterIcon } from 'react-share';
+import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,6 +53,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto'
   },
   image: {
+    width: '100%',
     '&:hover': {
       transform: 'scale(1.05)',
     }
@@ -63,52 +63,48 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Favorites = (props) => {
+const FakeListingCard = (props) => {
   const classes = useStyles();
-  console.log(props.favoriteList)
-  const shareURL = 'https://rvnb.netlify.com/'
+  console.log(props)
+  console.log(props.post)
   
   return (
-    <div className="saved-list">
+      <div>
         <div>
           <Paper className={classes.example}>
-            <h1 className={classes.heading}>Search by location:</h1>
-            <input label='Search by location' icon="search" onChange={onchange} />
+            <h1 className={classes.heading}>Listing:</h1>
             <Grid container wrap="wrap" className={classes.grid}>
-            {props.favoriteList.map((item, index) => (
-             
-              // if () {
-              //   return null
-              // }
-
-
-              <Box key={index} width={220} margin={1} my={5} className={classes.image}>
-                {item ? (
-                  <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />
+              <Box key={props.post.id} className={classes.favContent}>
+                {props.post ? (
+                  <img className={classes.image} alt={props.post.title} src={props.post.img} />
                 ) : (
                   <Skeleton variant="rect" width={220} height={120} />
                 )}
 
-                {item ? (
+                {props.post ? (
                   <Box paddingRight={2} className={classes.favContent}>
                     <Typography gutterBottom variant="body2">
-                      {item.title}
+                      {props.post.title}
                     </Typography>
                     <Typography display="block" variant="caption" color="textSecondary">
-                      {item.location}
+                      {props.post.address}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                      {`${item.views} • ${item.createdAt}`}
+                      {`$${props.post.price} per night`}
+                    </Typography>
+                    <Typography variant="caption" color="textSecondary">
+                      {`Available from ${props.post.start_date} to ${props.post.end_date}`}
+                    </Typography>
+                    <Typography variant="caption" color="textSecondary">
+                      {props.post.description}
                     </Typography>
                     <Rating name="half-rating" value={4.5} precision={0.5} />
                     <div>
-                      <IconButton onClick={() => props.deleteFavorite(item.id)}>
-                        <DeleteIcon />
-                      </IconButton>
+                      <button aria-label="add to booked" onClick={() => props.addToBooked(props.post)}>
+                        BOOK
+                      </button>
                       <IconButton aria-label="share">
-                        <TwitterShareButton url={shareURL}>
-                          <TwitterIcon size={32} round={true} />
-                        </TwitterShareButton>
+                        <ShareIcon />
                       </IconButton>
                     </div>
                   </Box>
@@ -119,7 +115,6 @@ const Favorites = (props) => {
                   </React.Fragment>
                 )}
               </Box>
-              ))}
             </Grid>
           </Paper>
         </div>
@@ -127,4 +122,4 @@ const Favorites = (props) => {
   );
 }
 
-export default Favorites;
+export default FakeListingCard;
