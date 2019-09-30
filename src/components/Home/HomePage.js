@@ -3,6 +3,15 @@ import styled, { keyframes } from 'styled-components';
 import Hero from '../../images/Hero1.jpg'
 import Caravan from '../../images/caravanlogo.svg'
 import { zoomIn } from 'react-animations'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles(theme => ({
+  textField: {
+    margin: '1% auto 0',
+    width: '90%'
+  },
+}));
 
 // Animations
 const zoomInAnimation = keyframes`${zoomIn}`;
@@ -101,6 +110,7 @@ const BrowseButton = styled.button`
 `;
 
 function HomePage(props) {
+  const classes = useStyles();
 
   function handleCreateButton() {
     props.history.push('/createlisting')
@@ -117,7 +127,14 @@ function HomePage(props) {
           <Header>HAVE A DESTINATION IN MIND?</Header>
           <Logo />
           <Line />
-          <Para>Search for a location.</Para>
+          <TextField
+            id="outlined-search"
+            label="Search for a location..."
+            type="search"
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
+          />
         </Content>
         <CreateButton onClick={handleCreateButton}>
           Create Listing
