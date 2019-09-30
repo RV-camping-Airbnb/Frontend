@@ -233,7 +233,10 @@ export default withFormik({
   handleSubmit(values, { resetForm, setSubmitting }) {
     console.log(values);
     axios().post('/posts', values)
-    .then(res => console.log(res))
+    .then(res => {
+      console.log(res);
+      window.location.replace("../listings");
+    })
     .catch(err => console.log(err))
     resetForm();
     setSubmitting(false);
