@@ -77,11 +77,6 @@ const Favorites = (props) => {
             <Grid container wrap="wrap" className={classes.grid}>
             {props.favoriteList.map((item, index) => (
              
-              // if () {
-              //   return null
-              // }
-
-
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
                   <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />

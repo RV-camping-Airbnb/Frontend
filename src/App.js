@@ -22,10 +22,9 @@ import StripePayment from './components/Payments/StripePayment';
 
 function App() {
   const [listing, setListing] = useState([]);
-  const [favoriteList, setFavoriteList] = useState(listings);
+  const [favoriteList, setFavoriteList] = useState([]);
   const [booked, setBooked] = useState(false);
-  const [bookedList, setBookedList] = useState(data);
-  console.log(listings, data, "I am in App.js")
+  const [bookedList, setBookedList] = useState([]);
 
   useEffect(() => {
     axios()
@@ -78,7 +77,7 @@ function App() {
 
       <Route path='/profile' component={Profile} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
-      <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
+      <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked} addToBookedList={addToBookedList} /> } />
       <Route path='/messenger' component={Messenger} />
       <Route path='/createlisting' component={ListingForm} />
       <Route path='/checkout' render={props => <StripePayment {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
@@ -88,13 +87,11 @@ function App() {
       <Route path='/listings/:id' render={props => <Listing {...props} listing={listing} setListing={setListing} bookedList={bookedList} addToBookedList={addToBookedList} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite} />} />
       <Route path='/listings' render={props => <ListingList {...props} listing={listing} addToBookedList={addToBookedList} bookedList={bookedList} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite} /> } />
       
-      
       <Route path='/login' render={props => <LoginForm {...props} /> } />
       <Route path='/logout' component={LogOut} />
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/signup' component={SignUpForm} />
-      <Route path='/listing' component={ListingForm} />
-      <Route path='/favorites' render={props => <Favorites {...props} listing={listing} /> } />
+    
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
     </Switch>
