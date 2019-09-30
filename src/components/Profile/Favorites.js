@@ -103,7 +103,7 @@ const Favorites = (props) => {
                      {post.description}
                     </Typography>
                     <div>
-                      <IconButton onClick={() => props.deleteFavorite(post.id)}>
+                      <IconButton onClick={() => props.deleteFavorite(post.post_id)}>
                         <DeleteIcon />
                       </IconButton>
                       <IconButton aria-label="share">

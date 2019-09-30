@@ -39,7 +39,7 @@ function App() {
   }, [])
   
   const addToFavoritesList = listing => {
-    const updatedList = (favoriteList.includes(el => el.id === listing.id))
+    const updatedList = (favoriteList.includes(el => el.id === listing.post_id))
     console.log(updatedList)
 
     if (!updatedList) {
@@ -48,7 +48,7 @@ function App() {
   }
 
   const deleteFavorite = (id) => {
-    const updatedList = favoriteList.filter((listing) => listing.id !== id)
+    const updatedList = favoriteList.filter((listing) => listing.post_id !== id)
     setFavoriteList(updatedList)
   }
 
@@ -57,7 +57,7 @@ function App() {
   }
 
   const addToBookedList = listing => {
-    const updatedBookedList = (bookedList.includes(el => el.id === listing.id))
+    const updatedBookedList = (bookedList.includes(el => el.id === listing.post_id))
 
     if (!updatedBookedList) {
       setBookedList([...bookedList, listing])
@@ -65,7 +65,7 @@ function App() {
   }
 
   const deleteBooked = (id) => {
-    const updatedBookedList = bookedList.filter((listing) => listing.id !== id)
+    const updatedBookedList = bookedList.filter((listing) => listing.post_id !== id)
     setBookedList(updatedBookedList)
   }
 

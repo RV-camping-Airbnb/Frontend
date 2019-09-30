@@ -154,7 +154,7 @@ const BookListing = (props) => {
               </Typography>
               <Rating name="half-rating" value={4.5} precision={0.5} />
               <div className={classes.buttons}>
-                <IconButton onClick={() =>       props.deleteBooked(post.id)}>
+                <IconButton onClick={() =>       props.deleteBooked(post.post_id)}>
                   <DeleteIcon />
                 </IconButton>
                 <IconButton aria-label="share">
