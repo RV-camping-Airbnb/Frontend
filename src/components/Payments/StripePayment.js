@@ -95,8 +95,8 @@ function StripePayment(props) {
                 token={handleToken}
                 billingAddress
                 shippingAddress
-                amount={props.price * 100}
-                name={props.location}
+                amount={listing.price * 100}
+                name={listing.location}
               />
             </Details>
           </Content>
