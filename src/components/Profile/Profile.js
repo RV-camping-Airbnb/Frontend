@@ -21,7 +21,7 @@ const Bio = styled.div`
   flex-direction: column;
   align-items: center;
   width: 25%;
-  height: 90vh;
+  height: 100vh;
   background-color: #3f51b5;
   color: white;
   @media (max-width: 768px) {
@@ -36,8 +36,8 @@ const Dashboard = styled.div`
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
-  width: 73%;
-  height: 90vh;
+  width: 75%;
+  height: 100vh;
 `;
 
 const Card = styled.div`
@@ -47,8 +47,8 @@ const Card = styled.div`
   min-width: 400px;
   max-width: 800px;
   width: 100%;
-  min-height: 400px;
-  max-height: 400px;
+  min-height: 450px;
+  max-height: 450px;
   padding: 2% 2% 10%;
   overflow: hidden;
   text-align: center;
