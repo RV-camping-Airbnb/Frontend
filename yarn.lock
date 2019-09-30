@@ -10719,6 +10719,7 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
+<<<<<<< HEAD
 warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
@@ -10726,7 +10727,19 @@ warning@^3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
+=======
+<<<<<<< HEAD
+>>>>>>> 7a825cd33aedc758d0c66464e75cf673912b092d
 warning@^4.0.1, warning@^4.0.2, warning@^4.0.3:
+=======
+<<<<<<< HEAD
+warning@^4.0.1, warning@^4.0.2, warning@^4.0.3:
+=======
+
+warning@^4.0.1, warning@^4.0.2, warning@^4.0.3:
+
+>>>>>>> master
+>>>>>>> farjad-fazli
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
