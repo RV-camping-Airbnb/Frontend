@@ -90,7 +90,10 @@ const FakeListingCard = (props) => {
                       {props.post.address}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                      {`${props.post.state} • ${props.post.price}`}
+                      {`$${props.post.price} per night`}
+                    </Typography>
+                    <Typography variant="caption" color="textSecondary">
+                      {`Available from ${props.post.start_date} to ${props.post.end_date}`}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
                       {props.post.description}

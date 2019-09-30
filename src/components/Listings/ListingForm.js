@@ -16,6 +16,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import RVTwo from '../../images/rv2.jpg';
 import DatePicker from 'react-datepicker';
+// import axios from 'axios';
+import {axiosWithAuth as axios} from '../../utils/axiosutils';
 
 class Thumb extends React.Component {
   state = {
@@ -131,28 +133,28 @@ function ListingForm({ values, isSubmitting }) {
             </script> */}
 
             <Field
-              type="zipCode"
-              name="zipCode"
+              type="zipcode"
+              name="zipcode"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="zipCode"
+              id="zipcode"
               label="Zip Code"
-              autoComplete="zipCode"
+              autoComplete="zipcode"
             />
             <Field
-              type="pricePerNight"
-              name="pricePerNight"
+              type="price"
+              name="price"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="pricePerNight"
+              id="price"
               label="Price Per Night"
-              autoComplete="pricePerNight"
+              autoComplete="price"
             />
             <Field
                 name="description"
@@ -166,35 +168,64 @@ function ListingForm({ values, isSubmitting }) {
                 id="description"
                 autoComplete="description"
               />
-            {/* <Field
-              type="startDate"
-              name="startDate"
+
+            <Field
+              type="start_date"
+              name="start_date"
               component={TextField}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="startDate"
+              id="start_date"
               label="Start Date"
-              autoComplete="startDate"
-            /> */}
+              autoComplete="start_date"
+            />
 
-            <form>Start Date: 
+            <Field
+              type="end_date"
+              name="end_date"
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="end_date"
+              label="End Date"
+              autoComplete="end_date"
+            />
+
+            <Field
+                name="img"
+                type="img"
+                label="Image URL"
+                component={TextField}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="img"
+                autoComplete="img"
+              />
+
+          
+
+            {/* <form>Start Date: 
               <input type='date' name='Start Date'></input>
             </form>
 
             <form>End Date: 
               <input type='date' name='End Date'></input>
-            </form>
+            </form> */}
 
             {/* () => {
-              const [startDate, setStartDate] = useState(new Date());
+              const [start_date, setstart_date] = useState(new Date());
               return (
-                <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+                <DatePicker selected={start_date} onChange={date => setstart_date(date)} />
               );
             }; */}
 
-            <div className="container">
+            {/* <div className="container">
               <Formik 
                 initialValues={{ file: null }}
                 onSubmit={(values) => {
@@ -227,7 +258,7 @@ function ListingForm({ values, isSubmitting }) {
                     </form>
                   );
                 }} />
-            </div>
+            </div> */}
 
             <Button 
               disabled={isSubmitting}
@@ -250,14 +281,23 @@ function ListingForm({ values, isSubmitting }) {
 }
 
 export default withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ address, zipcode, price, description, start_date, end_date, img }) {
     return {
-      email: email || "",
-      password: password || "",
+      address: address || "",
+      zipcode: zipcode || "",
+      price: price || "",
+      description: description || "",
+      start_date: start_date || "",
+      end_date: end_date || "",
+      img: img || ""
     };
   },
 
   handleSubmit(values, { resetForm, setSubmitting }) {
+    console.log(values);
+    axios().post('/posts', values)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
     resetForm();
     setSubmitting(false);
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
@@ -66,15 +66,28 @@ const useStyles = makeStyles(theme => ({
 const Favorites = (props) => {
   const classes = useStyles();
   console.log(props.favoriteList)
+
+const [search, setSearch] = useState("");
+
+let onchange = e => {
+  setSearch({search: e.target.value});
+  console.log(search);
+}
   
   return (
     <div className="saved-list">
         <div>
           <Paper className={classes.example}>
-            <h1 className={classes.heading}>Favorite Listings:</h1>
+            <h1 className={classes.heading}>Search by location:</h1>
+            <input label='Search by location' icon="search" onChange={onchange} />
             <Grid container wrap="wrap" className={classes.grid}>
             {props.favoriteList.map((item, index) => (
              
+              // if () {
+              //   return null
+              // }
+
+
               <Box key={index} width={220} margin={1} my={5} className={classes.image}>
                 {item ? (
                   <img style={{ width: 220, height: 140 }} alt={item.title} src={item.src} />

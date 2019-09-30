@@ -4,6 +4,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';
 import ListingForm from './components/Listings/ListingForm';
+import ListingsPage from './components/Listings/ListingsPage';
 import LoginForm from './components/Login/LoginForm';
 import LogOut from './components/Login/LogOut';
 import ResetPassword from './components/Login/ResetPassword';
@@ -28,7 +29,7 @@ function App() {
 
   useEffect(() => {
     axios()
-      .get('/listings')
+      .get('/posts')
       .then(res => {
         console.log(res.data)
         setListing(res.data);
@@ -89,6 +90,7 @@ function App() {
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       <Route path='/listings/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
       <Route path='/listings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
+      <Route path='/listingspage' component={ListingsPage} />
     </Switch>
     <SpeedDialer />
     </>
