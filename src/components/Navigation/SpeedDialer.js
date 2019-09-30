@@ -5,9 +5,7 @@ import { capitalize } from '@material-ui/core/utils';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, LinkedinIcon, LinkedinShareButton } from 'react-share';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,8 +29,7 @@ const shareURL = 'https://rvnb.netlify.com/'
 const actions = [
   { icon: <FacebookShareButton url={shareURL}> <FacebookIcon size={32} round={true} /> </FacebookShareButton>, name: 'Share' },
   { icon: <TwitterShareButton url={shareURL}> <TwitterIcon size={32} round={true} /> </TwitterShareButton>, name: 'Share' },
-  { icon: <FavoriteIcon />, name: 'Favorite' },
-  { icon: <DeleteIcon />, name: 'Delete' },
+  { icon: <LinkedinShareButton url={shareURL}> <LinkedinIcon size={32} round={true} /> </LinkedinShareButton>, name: 'Share' },
 ];
 
 export default function SpeedDialer() {
