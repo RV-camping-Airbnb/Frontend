@@ -13,10 +13,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// Animations
 const zoomInAnimation = keyframes`${zoomIn}`;
 
-// Styling
 const MainContainer = styled.div` 
   background-image: url(${Hero});
   background-position: center;

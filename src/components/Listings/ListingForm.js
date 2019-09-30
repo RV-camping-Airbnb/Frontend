@@ -16,7 +16,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import RVTwo from '../../images/rv2.jpg';
 import DatePicker from 'react-datepicker';
-// import axios from 'axios';
 import {axiosWithAuth as axios} from '../../utils/axiosutils';
 
 class Thumb extends React.Component {
@@ -121,16 +120,6 @@ function ListingForm({ values, isSubmitting }) {
               label="Address"
               autoComplete="address"
             />
-
-            {/* <input type="search" id="address-input" placeholder="Where is your land?" />
-            <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
-            <script>
-              let placesAutocomplete = places({
-                appId: 'plJ75MNPMJT3',
-                apiKey: '4e7965c9d17f6cc833e88ff6dae083f0',
-                container: document.querySelector('#address-input')
-              });
-            </script> */}
 
             <Field
               type="zipcode"

@@ -74,15 +74,13 @@ function App() {
     <Navigation />
     <Switch>
   
-
-      <Route path='/profile' component={Profile} />
+      <Route path='/profile' render={props => <Profile {...props} favoriteList={favoriteList} listing={listing} bookedList={bookedList} /> } />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked} addToBookedList={addToBookedList} /> } />
       <Route path='/messenger' component={Messenger} />
       <Route path='/createlisting' component={ListingForm} />
       <Route path='/checkout' render={props => <StripePayment {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       
-
       <Route exact path='/' render={props => <HomePage {...props} />} />
       <Route path='/listings/:id' render={props => <Listing {...props} listing={listing} setListing={setListing} bookedList={bookedList} addToBookedList={addToBookedList} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite} />} />
       <Route path='/listings' render={props => <ListingList {...props} listing={listing} addToBookedList={addToBookedList} bookedList={bookedList} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite} /> } />
@@ -92,8 +90,6 @@ function App() {
       <Route path='/reset-password' component={ResetPassword} />
       <Route path='/signup' component={SignUpForm} />
     
-      <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
-      <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
     </Switch>
     <SpeedDialer />
     </>

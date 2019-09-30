@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
   grid: {
     display: 'flex',
-    flexDrection: 'column',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     margin: '1% auto',
