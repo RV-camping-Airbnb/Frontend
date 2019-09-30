@@ -31,14 +31,15 @@ const useStyles = makeStyles(theme => ({
   },
   grid: {
     display: 'flex',
+    flexDrection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '0 auto',
+    margin: '1% auto',
     width: '50%',
     padding: '0 1%',
     cursor: 'pointer',
   },
-  favContent: {
+  imgContent: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -46,8 +47,19 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#fff',
     margin: '1% auto',
     width: '100%',
+    boxShadow: '1px 3px 5px',
+    overflow: 'hidden'
+  },
+  desContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    margin: '1% auto 0',
     padding: '1%',
-    boxShadow: '1px 3px 5px'
+    width: '100%',
+    boxShadow: '1px 3px 5px',
   },
   heading: {
     fontSize:'1.6rem',
@@ -55,12 +67,10 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     width: '100%',
+    transition: '5s',
     '&:hover': {
-      transform: 'scale(1.05)',
+      transform: 'scale(1.4)',
     }
-  },
-  colorSecondary: {
-    color: theme.palette.secondary.main,
   },
   buttons: {
     display: 'flex',
@@ -120,10 +130,10 @@ const ListingCard = (props) => {
   }
   
   return (
-    <Paper>
+    <>
       <Grid container wrap="wrap" className={classes.grid}>
       <h1 className={classes.heading}>Listing:</h1>
-        <Box key={props.post.id} className={classes.favContent}>
+        <Box key={props.post.id} className={classes.imgContent}>
           {props.post ? (
             <img className={classes.image} alt={props.post.title} src={props.post.img} />
           ) : (
@@ -131,7 +141,7 @@ const ListingCard = (props) => {
           )}
 
           {props.post ? (
-            <Box paddingRight={2} className={classes.favContent}>
+            <Box paddingRight={2} className={classes.desContent}>
               <Typography gutterBottom variant="body2">
                 {props.post.title}
               </Typography>
@@ -139,7 +149,10 @@ const ListingCard = (props) => {
                 {props.post.address}
               </Typography>
               <Typography variant="caption" color="textSecondary">
-                {`${props.post.state} • ${props.post.price}`}
+              {`$${props.post.price} per night`}
+              </Typography>
+              <Typography variant="caption" color="textSecondary">
+                {`Available from ${props.post.start_date} to ${props.post.end_date}`}
               </Typography>
               <Typography variant="caption" color="textSecondary">
                 {props.post.description}
@@ -172,7 +185,7 @@ const ListingCard = (props) => {
           )}
         </Box>
       </Grid>
-    </Paper>
+    </>
   );
 }
 

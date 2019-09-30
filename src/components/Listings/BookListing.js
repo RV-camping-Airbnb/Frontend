@@ -58,9 +58,6 @@ const useStyles = makeStyles(theme => ({
       transform: 'scale(1.05)',
     }
   },
-  colorSecondary: {
-    color: theme.palette.secondary.main,
-  },
 }));
 
 const shareURL = 'https://rvnb.netlify.com/'

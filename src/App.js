@@ -3,8 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Home/HomePage';
-// import ListingForm from './components/Listings/ListingForm';
-import ListingsPage from './components/Listings/ListingsPage';
+import ListingForm from './components/Listings/ListingForm';
 import LoginForm from './components/Login/LoginForm';
 import LogOut from './components/Login/LogOut';
 import ResetPassword from './components/Login/ResetPassword';
@@ -18,6 +17,7 @@ import Messenger from './components/Profile/Messenger';
 import SpeedDialer from './components/Navigation/SpeedDialer';
 import { axiosWithoutAuth as axios } from './utils/axiosutils';
 import { data, listings } from './components/Profile/Data';
+import StripePayment from './components/Payments/StripePayment';
 
 
 function App() {
@@ -76,11 +76,12 @@ function App() {
     <Switch>
   
 
-      <PrivateRoute path='/profile' component={Profile} />
+      <Route path='/profile' component={Profile} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       <Route path='/messenger' component={Messenger} />
-      <PrivateRoute path='/createlisting' component={ListingForm} />
+      <Route path='/createlisting' component={ListingForm} />
+      <Route path='/checkout' render={props => <StripePayment {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
       
 
       <Route exact path='/' render={props => <HomePage {...props} />} />
@@ -94,14 +95,8 @@ function App() {
       <Route path='/signup' component={SignUpForm} />
       <Route path='/listing' component={ListingForm} />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} /> } />
-      <Route path='/fakelisting' render={props => <FakeListing {...props} listing={listing} /> } />
-      <Route path='/fakelisting/:id' render={props => <FakeListing {...props} listing={listing} /> } />
-      <Route path='/fakelistings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} /> } />
       <Route path='/favorites' render={props => <Favorites {...props} listing={listing} addToFavoritesList={addToFavoritesList} favoriteList={favoriteList} deleteFavorite={deleteFavorite}/> } />
       <Route path='/booking' render={props => <BookListing {...props} listing={listing} bookedList={bookedList} deleteBooked={deleteBooked} booked={booked}/> } />
-      <Route path='/listings/:id' render={props => <FakeListing {...props} listing={listing} setListing={setListing} booked={booked} />} />
-      <Route path='/listings' render={props => <FakeListingList {...props} listing={listing} addToBooked={addToBooked} addToBookedList={addToBookedList} booked={booked} /> } />
-      <Route path='/listingspage' component={ListingsPage} />
     </Switch>
     <SpeedDialer />
     </>

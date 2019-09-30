@@ -6,6 +6,7 @@ export const data = [
     location: 'San Jose, CA',
     views: '396 k views',
     createdAt: 'a week ago',
+    price: 10000,
     isFavorited: false
   },
   {
@@ -15,6 +16,7 @@ export const data = [
     location: 'Paris, France',
     views: '2.1 M views',
     createdAt: '4 months ago',
+    price: 22341.12,
     isFavorited: false
   },
   {
@@ -24,6 +26,7 @@ export const data = [
     location: 'Tampa, FL',
     views: '130 M views',
     createdAt: '10 months ago',
+    price: 13412,
     isFavorited: false
   },
   {
@@ -33,6 +36,7 @@ export const data = [
     location: 'Lake Tahoe, CA',
     views: '112 k views',
     createdAt: 'a week ago',
+    price: 39.99,
     isFavorited: false
   },
   {
@@ -42,6 +46,7 @@ export const data = [
     location: 'Dallas, TX',
     views: '112 views',
     createdAt: '4 hours ago',
+    price: 19000,
     isFavorited: false
   },
 ];
